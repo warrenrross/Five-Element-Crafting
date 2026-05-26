@@ -31,6 +31,22 @@ Repo created from a brainstorming session. Decisions locked so far:
 5. Resolve the four open authoring questions at the end of `interaction-grid.md` (re-craftable Sheng/Ke results; counter persistence; insubordinate flavor copy; emoji audit).
 6. Begin `docs/design/stage-2-crafts.md` — combining results with results. Scope locked to **Medium** (~30–50 stage-2 cells + 10 catastrophes), postures **B + Apply + B-catastrophe + B-modifiers**. See `docs/design/open-questions.md` for the framing.
 7. Review `docs/design/open-questions.md` when ready — Q6 (stage-2 failure state) is the only un-locked stage-2 question; everything else either has a Medium-version answer or is explicitly UI-deferred.
+8. ~~Review and ratify `docs/design/decisions-for-richest-play.md`.~~ Answered all of `open-questions.md` against the predict-your-next-drag principle. Stage-2 authoring is now unblocked.
+
+## 2026-05-25 (latest+1) — Decisions-for-richest-play pass
+
+Reasoned through every open question in `open-questions.md` against the principle "the player should be able to predict, with reasonable accuracy, what their next drag will produce." Results in `docs/design/decisions-for-richest-play.md`. Highlights:
+
+- **Feelings as modifiers** — consumed by drop order (drop Feeling on target, target glows, next craft of target uses the bias). One slot, replace on overflow. Five distinct biases keyed to each Feeling's source element: Anger=forceful, Joy=generative, Worry=stalling, Grief=releasing, Fear=swap-actor-and-patient. Consumed only on successful craft (no-ops keep the charge). Sourced only from Stage-1 self-crafts.
+- **Failure model** — Nulls in Explore (snap back, with a 3-first-events "close to a recipe" nudge), Loss in Balance/Harmonize.
+- **Maximal-version forward-compat** — Storms become craftable; Surges and Feelings stay terminal (Feelings are operators, not values).
+- **Reabsorb dropped.** Result dropped on its own origin phase produces a refined variant (~5 new entries).
+- **Catastrophes** — terminal, with a brief workspace lockout instead of any phase-reset side effect.
+- **`phase_weights` schema** — every entity carries a float vector summing to 1.0 (Sheng=50/50, Ke=70/30 toward actor, Storm=100% actor, Insub=90/10 toward actor). Encoded in v1, displayed only in Balance/Harmonize.
+- **v1 UI overrides on the Infinite Craft clone**: phases-only right panel; left panel grouped by element with silhouettes for locked entries; free workspace placement on a faint pentagram background; hover tooltip for inspect (drawer in v2); pentagram readout = workspace-background fill, hidden until Balance/Harmonize; same layout on mobile; clear via button-or-long-press with confirm; click-discovered = re-spawn.
+- **Total v1 entity count** projected at ~80, comfortably inside the Medium ceiling.
+
+Stage-2 authoring (`docs/design/stage-2-crafts.md`) is now fully unblocked.
 
 ## 2026-05-25 (latest) — Stage-2 scope locked, UI deferred
 

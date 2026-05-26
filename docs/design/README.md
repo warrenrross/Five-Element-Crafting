@@ -11,6 +11,7 @@ Game mechanics, interaction surface, and UI structure. Source of truth for what 
 - *(planned)* `inspect-copy.md` — lore strings for each icon (for the future inspect panel).
 - *(planned)* `ui-layout.md` — right-panel blocks, left-panel discoveries, workspace center. **Deferred until v1 (which mirrors the open-source Infinite Craft clone) is playable** — see `open-questions.md` Q8–Q15.
 - [`open-questions.md`](./open-questions.md) — parking lot for unresolved design questions raised in brainstorming. Stage-2 grill (Q1–Q7) and UI grill (Q8–Q15) live here until each is answered in the appropriate design doc.
+- [`decisions-for-richest-play.md`](./decisions-for-richest-play.md) — reasoned answers to every open question from `open-questions.md`, optimizing for intuitive play. Locks the Feeling-modifier mechanic, the failure model, hybrid `phase_weights`, and v1 UI overrides on top of the Infinite Craft clone.
 
 ## Related
 
