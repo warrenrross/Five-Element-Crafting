@@ -135,7 +135,7 @@ For every phase, the resulting tier ladder follows the same structure (Feeling �
 | 2 | Feeling | **Grief** | 😢 | Grief is Metal's emotion; difficulty releasing emotions affects the lungs ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
 | 3 | Surge | **Rigidity** | 🗿 | Metal's quality is structure and clarity ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)); excess is structure without flexibility. |
 | 4 | Storm | **Drought** | 🏜️ | The classical "Lung Dryness" pattern, surfaced under its natural-form name. Metal governs respiration; lung/large-intestine are its Yin–Yang pair ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/), [Healthline](https://www.healthline.com/health/mind-body/what-are-the-five-elements)). |
-| ≥5 | Overflow | **Wasteland** | 🦴 | Metal-overflow. The landscape Drought has left — mineral residue at scale. Terminal; triggers workspace lockout. |
+| ≥5 | Overflow | **Wasteland** | 🧟 | Metal-overflow. The landscape Drought has left — structure remaining, life departed. Terminal; triggers workspace lockout. |
 
 ### 3.5 Water → Water
 

@@ -1495,7 +1495,7 @@
   {
     "id": "wasteland",
     "name": "Wasteland",
-    "emoji": "🦴",
+    "emoji": "🧟",
     "tier": "overflow",
     "concentration": 5,
     "phase_weights": {
@@ -1505,7 +1505,7 @@
       "metal": 1.0,
       "water": 0.0
     },
-    "surface_lore": "Country gone bone-dry — structure remaining, life departed.",
+    "surface_lore": "Country picked clean — structure remaining, life departed.",
     "true_name": "Lung Dryness overflow (肺燥盛)"
   },
   {
