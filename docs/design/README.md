@@ -9,7 +9,8 @@ Game mechanics, interaction surface, and UI structure. Source of truth for what 
 - *(planned)* `stage-2-crafts.md` — combining results with results.
 - *(planned)* `balance-mode.md` — Balance and Harmonize puzzle generation.
 - *(planned)* `inspect-copy.md` — lore strings for each icon (for the future inspect panel).
-- *(planned)* `ui-layout.md` — right-panel blocks, left-panel discoveries, workspace center.
+- *(planned)* `ui-layout.md` — right-panel blocks, left-panel discoveries, workspace center. **Deferred until v1 (which mirrors the open-source Infinite Craft clone) is playable** — see `open-questions.md` Q8–Q15.
+- [`open-questions.md`](./open-questions.md) — parking lot for unresolved design questions raised in brainstorming. Stage-2 grill (Q1–Q7) and UI grill (Q8–Q15) live here until each is answered in the appropriate design doc.
 
 ## Related
 

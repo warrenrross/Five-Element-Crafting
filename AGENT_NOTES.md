@@ -29,7 +29,19 @@ Repo created from a brainstorming session. Decisions locked so far:
 3. Add a brief `docs/research/open-craft-reference.md` noting that Open Craft (Vue + Mistral, YouTube `aqrPOPq1kP0`) is **reference only**, not a code dependency — confirmed in the 2026-05-25 follow-up.
 4. Decide on the technology baseline (vanilla JS like Hand_AI, or a small framework). Default: vanilla JS, static hosting on GitHub Pages, matching the rest of the project family.
 5. Resolve the four open authoring questions at the end of `interaction-grid.md` (re-craftable Sheng/Ke results; counter persistence; insubordinate flavor copy; emoji audit).
-6. Begin `docs/design/stage-2-crafts.md` — combining results with results.
+6. Begin `docs/design/stage-2-crafts.md` — combining results with results. Scope locked to **Medium** (~30–50 stage-2 cells + 10 catastrophes), postures **B + Apply + B-catastrophe + B-modifiers**. See `docs/design/open-questions.md` for the framing.
+7. Review `docs/design/open-questions.md` when ready — Q6 (stage-2 failure state) is the only un-locked stage-2 question; everything else either has a Medium-version answer or is explicitly UI-deferred.
+
+## 2026-05-25 (latest) — Stage-2 scope locked, UI deferred
+
+Grill-me session on stage-2 mechanics and UI layout. Decisions:
+
+- **v1 = Medium scope, hand-authored, no LLM.** Postures: **B (tier-gated stage-1 results)** + **Apply (results act on phases)** + **B-catastrophe (Storm × Storm = ~10 catastrophe entries)** + **B-modifiers (Feelings attach as modifier tokens)**. Target entity count: 65–85 total (~25 base + 30–50 stage-2 + 10 catastrophes).
+- **v2 = Maximal scope, LLM-backed.** ~175+ entities. This is the version that earns the Infinite Craft–style cache architecture. Not started.
+- **v1 UI = clone the open-source Infinite Craft UI** (Open Craft, Vue + Mistral, YouTube `aqrPOPq1kP0`). All deeper UI decisions (right-panel content, left-panel layout, workspace shape, inspect surface, pentagram placement, mobile, clear behavior, discoveries-click) defer until the v1 clone is playable and we have something to compare to.
+- Added `docs/design/open-questions.md` as the review-when-ready parking lot. Captures the full 15-question grill (Stage-2 Q1–Q7, UI Q8–Q15) verbatim, with the locked postures noted per question and tail questions called out where the lock only partially resolves a question.
+
+Next-session work flows from this: begin `docs/design/stage-2-crafts.md` authoring the 30–50 stage-2 cells + 10 catastrophes for the Medium scope, plus a short `docs/research/open-craft-reference.md` clarifying the UI-clone reference.
 
 ## 2026-05-25 (later still) — Player-surface rename pass
 
