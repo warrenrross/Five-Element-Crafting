@@ -224,7 +224,9 @@ function attachEntityDragHandlers(el) {
     origTop = parseFloat(el.style.top) || 0;
     movedSubstantially = false;
     el.classList.add("dragging");
-    ev.dataTransfer.effectAllowed = "move";
+    // copyMove so the workspace bg can accept ("copy" or "move") and entity
+    // targets can request "move" without the source rejecting the drop.
+    ev.dataTransfer.effectAllowed = "copyMove";
     // Custom payload: workspace-entity key
     try {
       ev.dataTransfer.setData("text/x-fec-key", el.dataset.key);
@@ -258,7 +260,16 @@ function attachEntityDragHandlers(el) {
 
   el.addEventListener("dragover", (ev) => {
     ev.preventDefault();
-    ev.dataTransfer.dropEffect = "move";
+    // Pick a dropEffect compatible with the source's effectAllowed. Phase
+    // tiles drag as "copy" semantics (spawn-on-target); entity moves are
+    // "move" semantics. Both sources advertise "copyMove", so we infer from
+    // the data types attached to the transfer.
+    const types = ev.dataTransfer.types;
+    if (types && types.includes("text/x-fec-phase")) {
+      ev.dataTransfer.dropEffect = "copy";
+    } else {
+      ev.dataTransfer.dropEffect = "move";
+    }
     el.classList.add("drop-target");
   });
   el.addEventListener("dragleave", () => {
@@ -457,6 +468,9 @@ function spawnPathologyToken(phaseId, x, y) {
 
   el.addEventListener("dragover", (ev) => {
     ev.preventDefault();
+    const types = ev.dataTransfer.types;
+    ev.dataTransfer.dropEffect =
+      types && types.includes("text/x-fec-phase") ? "copy" : "move";
     el.classList.add("drop-target");
   });
   el.addEventListener("dragleave", () => el.classList.remove("drop-target"));

@@ -28,7 +28,9 @@ export function initPhasePanel(opts = {}) {
     `;
 
     tile.addEventListener("dragstart", (ev) => {
-      ev.dataTransfer.effectAllowed = "copy";
+      // copyMove so any target can pick "copy" (workspace bg / entity craft)
+      // or "move" (entity reposition path) without the browser rejecting the drop.
+      ev.dataTransfer.effectAllowed = "copyMove";
       try {
         ev.dataTransfer.setData("text/x-fec-phase", id);
         // Provide a fallback for safety

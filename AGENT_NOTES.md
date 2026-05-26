@@ -2,6 +2,32 @@
 
 Session-to-session handoff notes for Five-Element-Crafting. Matches the convention used in [Hand_AI](https://github.com/warrenrross/Hand_AI) and [gesture-detect-research](https://github.com/warrenrross/gesture-detect-research).
 
+## 2026-05-26 (latest+4) — Phase-tile-onto-entity drop fix
+
+Fixed a confusing UX regression: dragging a phase tile onto an existing workspace entity showed a green-plus cursor over the workspace, then lost the green-plus the moment you hovered the entity, and on release the tile snapped back to the panel as if rejected. The drop never fired.
+
+Root cause was a spec-conformant DnD effect mismatch:
+
+- Phase tiles were starting drags with `effectAllowed = "copy"`.
+- Workspace entities' `dragover` was setting `dropEffect = "move"`.
+- Per HTML5 DnD: a target requesting `"move"` against a source advertising only `"copy"` is invalid, the browser shows the no-drop cursor, and on release the drop event is canceled.
+
+Fix in `app/src/ui/phase-panel.js` and `app/src/ui/workspace.js`:
+
+1. Both drag sources (phase tile and workspace entity) now advertise `effectAllowed = "copyMove"` so any compatible `dropEffect` works.
+2. The workspace-entity `dragover` and the pathology-token `dragover` now sniff `dataTransfer.types` and pick `"copy"` when the source carries `text/x-fec-phase`, otherwise `"move"`. That matches the semantics — phase drops spawn-or-craft (copy), entity drags reposition (move).
+
+Verified end-to-end with real Playwright mouse drags (synthesized DragEvents bypass the effectAllowed/dropEffect reconciliation, which is why earlier headless tests didn't catch this):
+
+- Phase tile -> workspace background: spawn (unchanged).
+- Phase tile -> workspace entity: now crafts directly. Wood tile dropped on workspace wood -> anger.
+- Workspace entity -> workspace entity: crafts (unchanged). Wood-on-fire -> kindling.
+- Workspace entity -> workspace background: repositions (unchanged). Verified `(164,164) -> (464,364)`.
+
+The analogous bug would have hit pathology tokens too (entity-drop-on-token to clear pathology in Balance mode), so that handler got the same treatment in the same commit.
+
+**No design-doc change needed** — this was always intended to work; the spec-level mismatch was just silent.
+
 ## 2026-05-26 (latest+3) — Skills catalog landed; READMEs refreshed
 
 Shipped this session:
