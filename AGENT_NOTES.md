@@ -32,6 +32,24 @@ Repo created from a brainstorming session. Decisions locked so far:
 6. ~~Begin `docs/design/stage-2-crafts.md` — combining results with results.~~ Done 2026-05-25. 55 stage-2 entities authored; v1 grand total 85 entities. Tail: naming pass on catastrophes and mixed bridges; explicit nulls list; phase-weight tuning post-Balance-mode.
 7. Review `docs/design/open-questions.md` when ready — Q6 (stage-2 failure state) is the only un-locked stage-2 question; everything else either has a Medium-version answer or is explicitly UI-deferred.
 8. ~~Review and ratify `docs/design/decisions-for-richest-play.md`.~~ Answered all of `open-questions.md` against the predict-your-next-drag principle. Stage-2 authoring is now unblocked.
+9. ~~Research prior art for Wu Xing puzzle mechanics.~~ Done 2026-05-26. See `docs/research/wu-xing-puzzle-prior-art.md`.
+10. Author `docs/design/balance-mode.md` using the prior-art report §14 recommendations as the baseline.
+
+## 2026-05-26 — Wu Xing puzzle prior-art research landed
+
+Added `docs/research/wu-xing-puzzle-prior-art.md` (410 lines, ~50 KB). Deep-research dive into prior art across six scopes: East Asian games (Chinese/Japanese/Korean/Vietnamese), Western five-element games, TCM educational apps, board/tabletop RPGs, open-source GitHub projects, and academic PCG literature. Read this before authoring `docs/design/balance-mode.md`.
+
+Key findings:
+
+- **No direct competitor** covers all four resolution types (Sheng/Ke/Self/Insub) *plus* a move-budget balance puzzle. The closest structural relative is *Wind and Water: Puzzle Battles* (2007), which used Wu Xing tiles in a dedicated puzzle mode with move counts.
+- **五行トリテ / Gogyo Trick** (2021, Japan) is the only prior art with all four Wu Xing relationship types (生 / 克 / 䫦 / 乘) as distinct game outcomes — an exact four-outcome match to our resolution model.
+- **Gloomhaven's infuse/consume** is the strongest Sheng-chaining precedent worth studying.
+- **Tigris & Euphrates** "lowest score wins" is the canonical balance-enforcement mechanic.
+- The report includes a **12-game taxonomy table** with Five-Element-Crafting as the only entry rated ✅ on all six design axes.
+- A **full PCG pipeline spec** is included (backward-chain generation → genetic difficulty calibration → solvability constraint → statistical distribution control), backed by Smith et al., Levonyan et al., Volden et al., and Katz et al. academic citations.
+- The report's §14 lays out 6 concrete recommendations for `docs/design/balance-mode.md`.
+
+Next-session work: author `docs/design/balance-mode.md` using the prior-art report as the design baseline.
 
 ## 2026-05-25 (latest+2) — Stage-2 authored
 
