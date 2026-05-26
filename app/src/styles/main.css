@@ -325,7 +325,325 @@ html, body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  /* Drawn by JS in Balance mode; static placeholder in v1. */
+  display: grid;
+  place-items: center;
+}
+
+.pentagram-svg {
+  width: min(60vmin, 480px);
+  height: min(60vmin, 480px);
+  opacity: 0.85;
+}
+
+.pentagram-ring {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 1;
+}
+
+.pentagram-sheng {
+  fill: none;
+  stroke: rgba(140, 200, 140, 0.18);
+  stroke-width: 1.2;
+}
+
+.pentagram-ke {
+  fill: none;
+  stroke: rgba(220, 110, 90, 0.18);
+  stroke-width: 1.2;
+}
+
+.pentagram-node-outer {
+  opacity: 0.18;
+}
+
+.pentagram-node-inner {
+  transition: r 200ms ease;
+}
+
+.pentagram-node.in-band .pentagram-node-outer {
+  opacity: 0.45;
+}
+
+.pentagram-label {
+  fill: var(--text-muted);
+  font-size: 10px;
+  font-family: system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.pentagram-node.in-band .pentagram-label {
+  fill: var(--text);
+}
+
+/* ---------- Mode toggle ---------- */
+
+.mode-toggle {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  z-index: 6;
+  display: inline-flex;
+  background: rgba(30, 30, 38, 0.85);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.mode-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+}
+
+.mode-btn.active {
+  background: var(--panel-bg);
+  color: var(--text);
+}
+
+/* ---------- Balance HUD ---------- */
+
+.balance-hud {
+  position: absolute;
+  left: 16px;
+  top: 56px;
+  right: 16px;
+  z-index: 6;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 8px 16px;
+  pointer-events: none;
+}
+
+.balance-hud > * { pointer-events: auto; }
+
+.balance-hud-left,
+.balance-hud-right {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  background: rgba(30, 30, 38, 0.85);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.balance-hud-right {
+  justify-self: end;
+}
+
+.hud-label {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+}
+
+#difficulty-select {
+  background: #1f1f25;
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  padding: 3px 6px;
+  font-size: 12px;
+}
+
+#new-puzzle-btn {
+  background: #2a2a32;
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.budget-counter {
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.budget-counter[data-low="1"] {
+  color: #f0d28a;
+}
+
+.pathology-tray {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  gap: 6px;
+  justify-self: end;
+  pointer-events: auto;
+}
+
+.path-slot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(30, 30, 38, 0.55);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+}
+
+.path-slot.filled {
+  background: rgba(80, 30, 110, 0.55);
+  border-style: solid;
+  border-color: #b48ce0;
+}
+
+.path-slot.danger {
+  border-color: rgba(220, 90, 90, 0.5);
+}
+
+.path-slot.danger.filled {
+  background: rgba(180, 40, 40, 0.6);
+  border-color: #ff7060;
+  box-shadow: 0 0 8px rgba(220, 90, 90, 0.5);
+}
+
+/* ---------- Balance end overlay ---------- */
+
+.end-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.55);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.end-card {
+  background: #1c1c22;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  max-width: 640px;
+  width: 100%;
+  box-shadow: var(--shadow);
+}
+
+.end-heading {
+  font-size: 22px;
+  letter-spacing: 0.04em;
+}
+.end-heading.won  { color: #9fdc9b; }
+.end-heading.lost { color: #f1a89a; }
+
+.end-subhead {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.end-columns {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.end-col-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.end-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.end-list li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  background: #1f1f25;
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  flex-wrap: wrap;
+}
+
+.step-i {
+  display: inline-block;
+  min-width: 20px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.step-arrow { color: var(--text-muted); }
+
+.step-kind {
+  margin-left: auto;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  background: #2a2a32;
+  color: var(--text-muted);
+}
+.step-kind-sheng { color: #9fdc9b; background: #1c2a1c; }
+.step-kind-ke    { color: #f1a89a; background: #2a1c1c; }
+.step-kind-self  { color: #f0d28a; background: #2a241c; }
+.step-kind-insub { color: #c8a5e0; background: #251c2a; }
+.step-kind-null  { color: var(--text-muted); }
+
+.end-empty {
+  color: var(--text-muted);
+  font-style: normal;
+}
+
+.end-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.end-actions button {
+  background: #2a2a32;
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+#end-retry {
+  background: #2c4a2a;
+  border-color: #3f6c3a;
+}
+
+.workspace-entity.pathology-token {
+  background: rgba(80, 30, 110, 0.35);
+  border: 1px dashed #b48ce0;
+  cursor: not-allowed;
+}
+
+.workspace-entity.pathology-token .entity-name {
+  color: #d6b5f0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 9px;
 }
 
 .hidden {

@@ -2,7 +2,19 @@
 
 Session-to-session handoff notes for Five-Element-Crafting. Matches the convention used in [Hand_AI](https://github.com/warrenrross/Hand_AI) and [gesture-detect-research](https://github.com/warrenrross/gesture-detect-research).
 
-## 2026-05-26 (latest) — v1 scaffold, naming ratified, inspect/layout docs landed
+## 2026-05-26 (latest+1) — Balance mode landed, mobile pass, Pages deploy
+
+Shipped this session:
+
+1. **Balance mode is now implemented in the scaffold.** New engine modules `app/src/engine/balance.js` (BalanceSession class, phase deltas, scoring, win/lose checks, pathology clearing) and `app/src/engine/pcg.js` (backward-chain PCG with `PATH_COUNT_CAP=200`, solvability check, session histogram). New UI modules `app/src/ui/pentagram.js` (SVG pentagram readout with phase-node radii scaled to weight, in-band highlight) and `app/src/ui/balance-hud.js` (budget counter, pathology tray, difficulty selector, end overlay with side-by-side generator vs. player paths). Workspace controller is now mode-aware: when a `BalanceSession` is set, crafts route through `session.applyMove()`, Insub spawns a draggable pathology token, nulls still cost budget per spec §11, and the Clear button is hidden per §13. Mode toggle in the workspace header switches between Explore (sandbox, free spawn) and Balance (puzzle, fixed seed).
+2. **Mobile pass.** Verified the 600px breakpoint with headless Playwright. Layout stacks cleanly: Phases → Workspace → Discoveries. Balance HUD, pentagram, pathology tray, and MOVES counter all fit in 600px width. Footer mode label now reflects current mode (`Explore mode` / `Balance mode`) instead of being hard-coded.
+3. **GitHub Pages deploy.** Repo is configured to serve from `/app/` on `main`. Live URL: https://warrenrross.github.io/Five-Element-Crafting/.
+
+**Deferred — pending playtest**:
+
+- **Reading-lore wiring into the inspect drawer.** `docs/design/inspect-copy.md` carries the long-form citation-rich text per entity, but v1 inspect still shows only Surface + True-name + phase-weights + recipes. Adding `reading_lore` to the entity JSON and rendering it as a third drawer section is a small change, but we want to playtest the current inspect surface first — the predict-your-next-drag principle argues for keeping inspect lean until we see whether players actually open it during a Balance puzzle. Revisit after playtesting Balance mode end-to-end.
+
+## 2026-05-26 — v1 scaffold, naming ratified, inspect/layout docs landed
 
 Three shipped this session:
 

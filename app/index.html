@@ -23,6 +23,30 @@
         <div id="catastrophe-overlay" class="hidden"></div>
         <div id="nudge"></div>
         <button id="clear-btn" class="workspace-button" type="button">Clear</button>
+
+        <div id="mode-toggle" class="mode-toggle">
+          <button id="mode-explore" class="mode-btn active" type="button">Explore</button>
+          <button id="mode-balance" class="mode-btn" type="button">Balance</button>
+        </div>
+
+        <div id="balance-hud" class="balance-hud hidden">
+          <div class="balance-hud-left">
+            <label class="hud-label" for="difficulty-select">Difficulty</label>
+            <select id="difficulty-select">
+              <option value="gentle">Gentle</option>
+              <option value="steady" selected>Steady</option>
+              <option value="sharp">Sharp</option>
+            </select>
+            <button id="new-puzzle-btn" type="button">New puzzle</button>
+          </div>
+          <div class="balance-hud-right">
+            <div class="hud-label">Moves</div>
+            <div id="budget-counter" class="budget-counter">0 / 0</div>
+          </div>
+          <div id="pathology-tray" class="pathology-tray"></div>
+        </div>
+
+        <div id="balance-end-overlay" class="end-overlay hidden"></div>
       </main>
 
       <aside id="blocks-panel" class="panel panel-right">
@@ -52,7 +76,7 @@
     <footer id="app-footer">
       <a href="https://github.com/warrenrross/Five-Element-Crafting" target="_blank" rel="noopener">Five-Element-Crafting</a>
       <span class="footer-sep">&middot;</span>
-      <span>v1 scaffold &mdash; Explore mode</span>
+      <span>v1 scaffold &mdash; <span id="footer-mode">Explore mode</span></span>
     </footer>
 
     <script type="module" src="src/main.js"></script>

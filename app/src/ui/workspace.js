@@ -17,7 +17,6 @@ import {
   getEntity,
 } from "../engine/recipes.js";
 import { getSelfStage, advanceSelfStage } from "../engine/self-state.js";
-
 const NUDGE_LIMIT = 3;
 
 // State
@@ -30,6 +29,32 @@ let nudgeTimer = null;
 let onDiscovery = null;
 let onCraftedEntityClick = null;
 let lockoutActive = false;
+
+// Balance-mode session, if any. When set, crafts route through the
+// session.applyMove() path and onSessionUpdate / onSessionEnd fire.
+let balanceSession = null;
+let onSessionUpdate = null;
+let onSessionEnd = null;
+
+export function setBalanceSession(session, opts = {}) {
+  balanceSession = session;
+  onSessionUpdate = opts.onUpdate || (() => {});
+  onSessionEnd = opts.onEnd || (() => {});
+}
+
+export function clearBalanceSession() {
+  balanceSession = null;
+  onSessionUpdate = null;
+  onSessionEnd = null;
+}
+
+export function getBalanceSession() {
+  return balanceSession;
+}
+
+export function workspaceElement() {
+  return workspaceEl;
+}
 
 // One unique DOM id per workspace entity
 let nextEntityKey = 1;
@@ -216,6 +241,57 @@ function handleEntityDrop(targetEl, ev) {
 function resolveCraft({ actorEntity, actorEl, patientEntity, patientEl }) {
   if (!actorEntity || !patientEntity) return;
 
+  // ----- Balance-mode branch -----
+  if (balanceSession) {
+    const moveOutcome = balanceSession.applyMove(actorEntity, patientEntity);
+
+    if (!moveOutcome.ok) {
+      // Null in Balance still costs budget. Animate snap-back, signal HUD.
+      handleNull(actorEl, patientEl);
+      onSessionUpdate();
+      if (moveOutcome.outcome) onSessionEnd();
+      return;
+    }
+
+    const rect = patientEl.getBoundingClientRect();
+    const ws = workspaceEl.getBoundingClientRect();
+    const x = rect.left + rect.width / 2 - ws.left;
+    const y = rect.top + rect.height / 2 - ws.top;
+
+    emitHalo(x, y, moveOutcome.kind);
+
+    if (actorEl && actorEl !== patientEl) actorEl.remove();
+    patientEl.remove();
+
+    const resultEl = spawnEntity(moveOutcome.result, x, y);
+    if (resultEl) {
+      const cue = `cue-${moveOutcome.kind}`;
+      resultEl.classList.add(cue);
+      setTimeout(() => resultEl.classList.remove(cue), 600);
+    }
+
+    // Insub spawns a pathology token onto the workspace.
+    if (moveOutcome.kind === "insub") {
+      const phaseId =
+        balanceSession.pathologyTokens[balanceSession.pathologyTokens.length - 1];
+      spawnPathologyToken(phaseId, x + 80, y);
+    }
+
+    // Catastrophes in Balance still surface the lore overlay briefly.
+    if (isCatastrophe(moveOutcome.result.id)) {
+      triggerCatastropheLockout(moveOutcome.result);
+    }
+
+    // Discoveries ledger still updates so Explore can see Balance finds.
+    const isNew = recordDiscovery(moveOutcome.result.id);
+    onDiscovery(moveOutcome.result, isNew);
+
+    onSessionUpdate();
+    if (moveOutcome.outcome) onSessionEnd();
+    return;
+  }
+
+  // ----- Explore-mode branch -----
   const stageCounter =
     actorEntity.id === patientEntity.id ? getSelfStage(actorEntity.id) : 0;
   const outcome = resolve(actorEntity.id, patientEntity.id, stageCounter);
@@ -261,12 +337,77 @@ function resolveCraft({ actorEntity, actorEl, patientEntity, patientEl }) {
   }
 }
 
+/**
+ * Spawn a pathology token on the workspace. Visually distinct from entities.
+ * Accepts drops from any phase entity — if the phase is the Ke-controller
+ * for the pathology, balanceSession.clearPathology() clears it.
+ */
+function spawnPathologyToken(phaseId, x, y) {
+  if (!entitiesEl) return null;
+  const ws = workspaceEl.getBoundingClientRect();
+  const el = document.createElement("div");
+  el.className = "pathology-token";
+  el.dataset.pathologyPhase = phaseId;
+  el.style.left = `${clamp(x - 32, 0, ws.width - 64)}px`;
+  el.style.top  = `${clamp(y - 32, 0, ws.height - 64)}px`;
+  el.innerHTML = `
+    <div class="pathology-glyph">!</div>
+    <div class="pathology-phase">${phaseId}</div>
+  `;
+
+  el.addEventListener("dragover", (ev) => {
+    ev.preventDefault();
+    el.classList.add("drop-target");
+  });
+  el.addEventListener("dragleave", () => el.classList.remove("drop-target"));
+  el.addEventListener("drop", (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    el.classList.remove("drop-target");
+    if (!balanceSession) return;
+
+    const phaseDragId = ev.dataTransfer.getData("text/x-fec-phase");
+    const actorKey   = ev.dataTransfer.getData("text/x-fec-key");
+    let actorEntity = null;
+    let actorEl = null;
+    if (phaseDragId) {
+      actorEntity = getEntity(phaseDragId);
+    } else if (actorKey) {
+      actorEl = entitiesEl.querySelector(`[data-key="${actorKey}"]`);
+      if (actorEl) actorEntity = getEntity(actorEl.dataset.entityId);
+    }
+    if (!actorEntity) return;
+
+    // Find the index of this pathology in the session list (first match).
+    const idx = balanceSession.pathologyTokens.indexOf(phaseId);
+    const result = balanceSession.clearPathology(actorEntity, idx);
+    if (result.ok) {
+      el.classList.add("cleared");
+      setTimeout(() => el.remove(), 300);
+      onSessionUpdate();
+      if (balanceSession.outcome) onSessionEnd();
+    } else {
+      // Wrong controller — flash red, no budget consumed.
+      el.classList.add("reject");
+      setTimeout(() => el.classList.remove("reject"), 300);
+    }
+  });
+
+  entitiesEl.appendChild(el);
+  return el;
+}
+
 function handleNull(actorEl, patientEl) {
   // Snap-back animation for the actor entity
   if (actorEl) {
     actorEl.classList.add("snapping-back");
     setTimeout(() => actorEl.classList.remove("snapping-back"), 200);
   }
+
+  // In Balance mode the nudge is disabled per spec §11. The budget hit is
+  // the only signal.
+  if (balanceSession) return;
+  if (!patientEl) return;
 
   // First three nulls show a label
   if (nullCountThisSession < NUDGE_LIMIT) {
@@ -319,7 +460,7 @@ function triggerCatastropheLockout(entity) {
 }
 
 export function clearWorkspace() {
-  entitiesEl.innerHTML = "";
+  if (entitiesEl) entitiesEl.innerHTML = "";
   nullCountThisSession = 0;
 }
 

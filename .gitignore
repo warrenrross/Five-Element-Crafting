@@ -16,3 +16,6 @@ dist/
 # Local env
 .env
 .env.local
+
+# Local test artifacts
+screenshots/
