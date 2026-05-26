@@ -34,16 +34,25 @@ const DELTAS = {
   sheng: 0.05,       // generative — actor gives, patient receives
   ke: 0.05,          // controlling — actor takes from patient
   keActor: 0.02,     // ke actor gains a small amount
-  self: 0.08,        // self-craft concentrates the phase
+  self: 0.08,        // legacy fallback; the live value comes from SELF_DELTA_BY_CONCENTRATION
   insub: 0.02,       // insub disturbs the actor's phase
   pathClear: 0.02,   // clearing a pathology gives the controller +δ
+};
+
+const SELF_DELTA_BY_CONCENTRATION = {
+  2: 0.05,  // Feeling (1+1)
+  3: 0.10,  // Surge   (1+2)
+  4: 0.15,  // Storm   (1+3 or 2+2)
+  5: 0.20,  // Overflow (any ≥5)
 };
 ```
 
 Symptoms → knob:
 
 - *Puzzles feel sluggish — too many moves to swing a phase* → raise sheng/ke deltas.
-- *Single self-crafts dominate* → lower `self`.
+- *A single Feeling can solve the puzzle by itself* → lower `SELF_DELTA_BY_CONCENTRATION[2]`.
+- *Players never escalate to Storm/Overflow* → widen the gap between adjacent rows (e.g. 0.05 / 0.12 / 0.20 / 0.30).
+- *Overflows finish the puzzle for free* → lower `SELF_DELTA_BY_CONCENTRATION[5]`; remember overflows also drain budget to 1 per §10 + §5.3.
 - *Pathologies are trivial to ignore* → raise `pathClear` so clearing becomes a deliberate move.
 
 #### Difficulty tiers (`balance.js TIERS`)
@@ -109,6 +118,7 @@ A complete Balance-mode smoke test:
 - **The pentagram only updates after a successful craft.** If you change which move types affect which phases, the pentagram will silently desync. The mapping is in `pentagram.js#updatePentagram()` and must stay in lockstep with the deltas in `balance.js`.
 - **The end overlay's "generator path" is the canonical solution found by the PCG**, not "the optimal solution." If a player finds a shorter path you didn't anticipate, that's fine and intended.
 - **Catastrophes drain budget to 1, not 0.** Spec §10. So a player can still attempt one final clearing move. Don't change this without re-reading §10.
+- **Self-overflows count as catastrophes for budget purposes.** The check is `isCatastrophe(result.id) || result.tier === "overflow"`. If you add a new overflow entity, list it in `catastrophes.json` as well so the Explore-mode lockout overlay also fires.
 
 ## Related
 

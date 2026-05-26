@@ -14,7 +14,6 @@ import {
   resetLedger,
   getEntity,
 } from "./engine/recipes.js";
-import { resetSelfStages } from "./engine/self-state.js";
 import { initPhasePanel } from "./ui/phase-panel.js";
 import { initDiscoveries, refresh as refreshDiscoveries } from "./ui/discoveries.js";
 import {
@@ -258,7 +257,6 @@ function resetGame() {
 
   // 2. Wipe persistent state.
   resetLedger();
-  resetSelfStages();
   resetSessionHistogram();
 
   // 3. Re-seed the phases as discovered (parity with first-load).

@@ -16,7 +16,6 @@ import {
   isCatastrophe,
   getEntity,
 } from "../engine/recipes.js";
-import { getSelfStage, advanceSelfStage } from "../engine/self-state.js";
 import { makeTouchDraggable } from "./touch-drag.js";
 const NUDGE_LIMIT = 3;
 
@@ -403,18 +402,11 @@ function resolveCraft({ actorEntity, actorEl, patientEntity, patientEl }) {
   }
 
   // ----- Explore-mode branch -----
-  const stageCounter =
-    actorEntity.id === patientEntity.id ? getSelfStage(actorEntity.id) : 0;
-  const outcome = resolve(actorEntity.id, patientEntity.id, stageCounter);
+  const outcome = resolve(actorEntity.id, patientEntity.id);
 
   if (!outcome.ok) {
     handleNull(actorEl, patientEl);
     return;
-  }
-
-  // Successful craft. Advance self-stage if applicable.
-  if (outcome.moveType === "self") {
-    advanceSelfStage(actorEntity.id);
   }
 
   // Compute the position where the result appears (center of the patient).

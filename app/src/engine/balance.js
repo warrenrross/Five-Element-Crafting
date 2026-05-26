@@ -27,9 +27,21 @@ export const DELTAS = {
   sheng: 0.05,      // Δ — patient phase gain on a Sheng move
   ke: 0.05,         // Δ — patient phase loss on a Ke move
   keActor: 0.02,    // δ — actor phase gain on a Ke move
-  self: 0.08,       // Δ_self — actor phase gain on a Self move
+  self: 0.08,       // Δ_self — legacy default (used when result concentration unknown)
   insub: 0.02,      // δ_insub — patient phase shift on an Insub move
   pathClear: 0.02,  // +δ to the controlling phase when a pathology is cleared
+};
+
+// Δ_self by produced concentration — see balance-mode.md §5.3.
+//   2 = Feeling   → 0.05
+//   3 = Surge     → 0.10
+//   4 = Storm     → 0.15
+//   5 = Overflow  → 0.20
+export const SELF_DELTA_BY_CONCENTRATION = {
+  2: 0.05,
+  3: 0.10,
+  4: 0.15,
+  5: 0.20,
 };
 
 // Pathology cap per §7.
@@ -79,7 +91,7 @@ const KE_CONTROLLER = {
  */
 export function classifyMove(actorEntity, patientEntity) {
   if (!actorEntity || !patientEntity) return "null";
-  const outcome = resolve(actorEntity.id, patientEntity.id, 0);
+  const outcome = resolve(actorEntity.id, patientEntity.id);
   if (!outcome.ok) return "null";
   return outcome.moveType; // sheng / ke / self / insub / stage2
 }
@@ -206,7 +218,7 @@ export class BalanceSession {
     if (this.outcome) return { ok: false, kind: "blocked", outcome: this.outcome };
 
     const beforeState = { ...this.state };
-    const outcome = resolve(actorEntity.id, patientEntity.id, 0);
+    const outcome = resolve(actorEntity.id, patientEntity.id);
     const isNull = !outcome.ok;
     const kind = isNull ? "null" : outcome.moveType;
 
@@ -238,8 +250,9 @@ export class BalanceSession {
           : "wood");
       }
 
-      // Catastrophes drain the budget down to a 1-move minimum (§10).
-      if (isCatastrophe(result.id)) {
+      // Catastrophes (and self-overflows) drain the budget down to a
+      // 1-move minimum (§10 and §5.3).
+      if (isCatastrophe(result.id) || result.tier === "overflow") {
         this.budget = Math.min(this.budget, 1);
       }
     } else {
@@ -331,7 +344,9 @@ function applyEntityWeights(vec, kind, actorEntity, patientEntity, resultEntity)
     next[aPhase] = (next[aPhase] || 0) + DELTAS.keActor;
   } else if (kind === "self") {
     const aPhase = dominantPhase(actorEntity);
-    next[aPhase] = (next[aPhase] || 0) + DELTAS.self;
+    const conc = (resultEntity && resultEntity.concentration) || 2;
+    const delta = SELF_DELTA_BY_CONCENTRATION[conc] || DELTAS.self;
+    next[aPhase] = (next[aPhase] || 0) + delta;
   } else if (kind === "insub") {
     const pPhase = dominantPhase(patientEntity);
     const aPhase = dominantPhase(actorEntity);

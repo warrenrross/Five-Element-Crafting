@@ -35,8 +35,7 @@ five-element-crafting/
     src/
       main.js                     # Entry point; wires panels, modes, modals
       engine/
-        recipes.js                # Data loader, ordered-pair resolve(), discoveries ledger
-        self-state.js             # Per-element self-stage counter (Feeling → Surge → Storm)
+        recipes.js                # Data loader, resolve() (ordered-pair table + concentration-additive self-rule), discoveries ledger
         balance.js                # BalanceSession class, phase deltas, win/lose, pathologies
         pcg.js                    # Backward-chain puzzle generator with difficulty tiers
       ui/
@@ -48,10 +47,10 @@ five-element-crafting/
         balance-hud.js            # Budget counter, pathology tray, difficulty selector, end overlay
         touch-drag.js             # Pointer-event based drag-drop for touchscreens
       data/
-        entities.json             # 95 entities (id, name, emoji, tier, phase_weights, lore)
-        recipes.json              # 110 ordered-pair recipes (actor + patient → result)
-        self_progression.json     # Phase → Feeling → Surge → Storm chains
-        catastrophes.json         # IDs that trigger the lockout overlay
+        entities.json             # 100 entities (id, name, emoji, tier, concentration, phase_weights, lore)
+        recipes.json              # 110 ordered-pair recipes (cross-phase results)
+        self_progression.json     # Phase × concentration → result lookup (replaces stage-counter)
+        catastrophes.json         # IDs that trigger the lockout overlay (Stage-2 catastrophes + 5 self-overflows)
       styles/
         main.css                  # All styles, including the 600px breakpoint
 

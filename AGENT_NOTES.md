@@ -2,6 +2,36 @@
 
 Session-to-session handoff notes for Five-Element-Crafting. Matches the convention used in [Hand_AI](https://github.com/warrenrross/Hand_AI) and [gesture-detect-research](https://github.com/warrenrross/gesture-detect-research).
 
+## 2026-05-26 (latest+5) — Concentration-additive self-craft + 5 self-overflow catastrophes
+
+Retired the session-counter self-craft mechanic. Self-craft is now concentration-additive: every entity carries a `concentration` integer (1 phase, 2 feeling, 3 surge, 4 storm, 5 overflow), drops sum the two inputs' concentrations, and the result is looked up in `self_progression.json` (now structured as `phase × concentration → id`). Anger (2) + Anger (2) now lands on Wind (4) directly, skipping Overgrowth — stronger inputs compound, exactly the design principle the previous "hidden global counter" rule was hiding.
+
+Five new self-overflow catastrophes added (entries #96–100, all `tier: "overflow"`, all pure-phase): **Blight** (🥀, Wood), **Heatwave** (🥵, Fire), **Avalanche** (🏔️, Earth), **Wasteland** (🦴, Metal), **Maelstrom** (🌀, Water). Names ratified in `docs/design/naming-ratification-overflow.md` (user chose backups over primaries). They behave like Stage-2 catastrophes — listed in `catastrophes.json`, trigger the 2s lockout overlay in Explore, drain Balance budget to 1.
+
+Balance mode's Δ_self now scales by produced concentration: 0.05 / 0.10 / 0.15 / 0.20 for Feeling / Surge / Storm / Overflow. See `SELF_DELTA_BY_CONCENTRATION` in `app/src/engine/balance.js`. The catastrophe budget-drain check also fires on `result.tier === "overflow"`, belt-and-suspenders with the `catastrophes.json` list.
+
+Files touched:
+
+- `app/src/data/entities.json` — 95 → 100 entries; every existing entity got a `concentration` field; 5 new overflow rows appended.
+- `app/src/data/self_progression.json` — restructured from phase-keyed array to `phase × concentration` table; added the row-5 (overflow) result for every phase.
+- `app/src/data/catastrophes.json` — added the 5 overflow ids.
+- `app/src/engine/recipes.js` — rewrote `resolve()` to take only (actor, patient); same-pure-phase pairs go through `purePhase()` + `selfTable`; cross-phase falls back to the recipe-row table. `getRecipesProducing()` rebuilt to synthesize "made from" rows from `selfTable` for inspect.
+- `app/src/engine/self-state.js` — **deleted**. No more session counter.
+- `app/src/engine/balance.js` — `SELF_DELTA_BY_CONCENTRATION` table; overflow added to budget-drain branch; `resolve()` calls updated to the new 2-arg signature.
+- `app/src/ui/workspace.js` — removed `getSelfStage` / `advanceSelfStage` imports + calls; resolver call simplified.
+- `app/src/ui/inspect.js` — `_selfStage` → `_selfConcentration` in the recipe-list rendering.
+- `app/src/main.js` — removed `resetSelfStages` import + call from `resetGame()`.
+- Docs: `docs/design/game-interaction-grid.md` §3 rewritten end-to-end; `docs/design/stage-2-crafts.md` §5.5 added; `docs/design/balance-mode.md` §5.3 rewritten; `docs/design/naming-ratification-overflow.md` ratified.
+- Skills: `app/README.md`, `SKILLS.md`, `docs/skills/02-add-entity.md`, `docs/skills/03-add-recipe.md`, `docs/skills/08-tune-balance.md` updated.
+
+Smoke tests in `tests/smoke-concentration.mjs` (headless node) plus a Playwright check against the live page — all 14 node and 8 browser cases pass, no console/page errors on load. Cases include Wood+Wood→Anger, Anger+Anger→Wind (skipping Overgrowth), Wood+Anger→Overgrowth, Wood+Wind→Blight, all five phases reaching their overflow, plus cross-phase Wood+Fire→Kindling to confirm the recipe-table fallback still works.
+
+Known follow-ups (deferred):
+
+- **Color saturation/intensity** — a visual cue that scales with concentration so the player can read "how charged" an entity is at a glance. Roadmap, not v1 (per the design discussion that produced this mechanic). The current build still uses a flat icon style.
+- **Ke-cycle decrement of concentration** — raised during the design pass, parked. Today, Ke moves don't touch concentration; the new resolver only consumes concentration through same-phase additive crafts.
+- The five `self` rows in `recipes.json` (e.g. `wood|wood → anger`) are now redundant — the resolver takes the additive path before checking the table for same-pure-phase pairs. Harmless. Cleanup is a future janitorial pass.
+
 ## 2026-05-26 (latest+4) — Phase-tile-onto-entity drop fix
 
 Fixed a confusing UX regression: dragging a phase tile onto an existing workspace entity showed a green-plus cursor over the workspace, then lost the green-plus the moment you hovered the entity, and on release the tile snapped back to the panel as if rejected. The drop never fired.

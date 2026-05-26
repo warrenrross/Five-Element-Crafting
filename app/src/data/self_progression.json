@@ -1,27 +1,32 @@
 {
-  "wood": [
-    "anger",
-    "overgrowth",
-    "wind"
-  ],
-  "fire": [
-    "joy",
-    "restlessness",
-    "heart"
-  ],
-  "earth": [
-    "worry",
-    "stagnation",
-    "mud"
-  ],
-  "metal": [
-    "grief",
-    "rigidity",
-    "drought"
-  ],
-  "water": [
-    "fear",
-    "flooding",
-    "frost"
-  ]
+  "wood": {
+    "2": "anger",
+    "3": "overgrowth",
+    "4": "wind",
+    "5": "blight"
+  },
+  "fire": {
+    "2": "joy",
+    "3": "restlessness",
+    "4": "heart",
+    "5": "heatwave"
+  },
+  "earth": {
+    "2": "worry",
+    "3": "stagnation",
+    "4": "mud",
+    "5": "avalanche"
+  },
+  "metal": {
+    "2": "grief",
+    "3": "rigidity",
+    "4": "drought",
+    "5": "wasteland"
+  },
+  "water": {
+    "2": "fear",
+    "3": "flooding",
+    "4": "frost",
+    "5": "maelstrom"
+  }
 }

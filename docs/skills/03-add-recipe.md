@@ -18,12 +18,14 @@ Every recipe has a `move_type` that drives the cue animation. The six valid valu
 |---|---|---|
 | `sheng` | Actor's phase generates the patient's phase | green halo + pulse-up |
 | `ke` | Actor's phase controls the patient's phase | red halo + press-down |
-| `self` | Actor and patient share the same `id` and `tier` | gold halo + brightness hold |
+| `self` | Actor and patient share the same pure phase (any tier) | gold halo + brightness hold |
 | `insub` | Actor's phase is controlled-by the patient's (reversed Ke) | purple halo + horizontal shake |
 | `stage_2` | A result combining a stage-1 entity with another input | neutral indigo + rotate |
 | *(absent)* | The pair is undefined → null result | (no result, snap-back animation) |
 
 The first four are determined by phase relationship. Stage-2 is anything that produces a tier-2 entity. Nulls are *not* in the table — they're the absence of a recipe.
+
+**Self moves are special.** They do not live in `recipes.json` at all. The engine inspects both inputs' `phase_weights`; if they share a pure phase, it sums their `concentration` values and looks up the result in `app/src/data/self_progression.json` (a `phase × concentration` table). Anger (2) + Anger (2) → the row at `wood.4`, which is Wind. Concentration ≥5 caps at 5 (the self-overflow). You should not add per-pair self rows; instead, add or edit a row in `self_progression.json`.
 
 ### 2. Add the row
 
@@ -66,6 +68,20 @@ Whatever you decide, write down the reasoning in `docs/design/decisions-for-rich
 - **`move_type` must match the actual phase relationship.** If you set `sheng` on a pair that isn't actually a Sheng arrow, the cue will fire but the Balance-mode delta will silently apply the Sheng delta (`+0.05` to the patient phase), which will desync the pentagram from the design intent. The engine doesn't currently validate this.
 - **No two recipes can share the same `(actor, patient)` ordered pair.** Last one wins, silently. If you're iterating, hard-refresh after every edit.
 - **Stage-2 recipes can have any input type.** A common pattern is `(stage1, phase) → stage2`. Don't constrain this artificially.
+
+### 5. Editing same-phase outcomes
+
+To change what Wood + Wood (or Anger + Anger, or any same-phase combination) produces, edit `app/src/data/self_progression.json`:
+
+```json
+{
+  "wood":  {"2": "anger",  "3": "overgrowth", "4": "wind",   "5": "blight"},
+  "fire":  {"2": "joy",    "3": "restlessness", "4": "heart", "5": "heatwave"},
+  ...
+}
+```
+
+The key is the **sum of the two inputs' concentrations** (clamped to 5). Adding a new tier in between (say a `surge2` at concentration 3.5) is not currently supported — the table only handles integer steps and the resolver clamps to 5.
 
 ## Related
 

@@ -4,6 +4,7 @@
     "name": "Wood",
     "emoji": "🌳",
     "tier": "phase",
+    "concentration": 1,
     "phase_weights": {
       "wood": 1.0,
       "fire": 0.0,
@@ -19,6 +20,7 @@
     "name": "Fire",
     "emoji": "🔥",
     "tier": "phase",
+    "concentration": 1,
     "phase_weights": {
       "wood": 0.0,
       "fire": 1.0,
@@ -34,6 +36,7 @@
     "name": "Earth",
     "emoji": "🟫",
     "tier": "phase",
+    "concentration": 1,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -49,6 +52,7 @@
     "name": "Metal",
     "emoji": "⚙️",
     "tier": "phase",
+    "concentration": 1,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -64,6 +68,7 @@
     "name": "Water",
     "emoji": "💧",
     "tier": "phase",
+    "concentration": 1,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -379,6 +384,7 @@
     "name": "Anger",
     "emoji": "😠",
     "tier": "feeling",
+    "concentration": 2,
     "phase_weights": {
       "wood": 1.0,
       "fire": 0.0,
@@ -394,6 +400,7 @@
     "name": "Joy",
     "emoji": "😄",
     "tier": "feeling",
+    "concentration": 2,
     "phase_weights": {
       "wood": 0.0,
       "fire": 1.0,
@@ -409,6 +416,7 @@
     "name": "Worry",
     "emoji": "😟",
     "tier": "feeling",
+    "concentration": 2,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -424,6 +432,7 @@
     "name": "Grief",
     "emoji": "😢",
     "tier": "feeling",
+    "concentration": 2,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -439,6 +448,7 @@
     "name": "Fear",
     "emoji": "😨",
     "tier": "feeling",
+    "concentration": 2,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -454,6 +464,7 @@
     "name": "Overgrowth",
     "emoji": "🌳",
     "tier": "surge",
+    "concentration": 3,
     "phase_weights": {
       "wood": 1.0,
       "fire": 0.0,
@@ -469,6 +480,7 @@
     "name": "Restlessness",
     "emoji": "⚡",
     "tier": "surge",
+    "concentration": 3,
     "phase_weights": {
       "wood": 0.0,
       "fire": 1.0,
@@ -484,6 +496,7 @@
     "name": "Stagnation",
     "emoji": "🟫",
     "tier": "surge",
+    "concentration": 3,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -499,6 +512,7 @@
     "name": "Rigidity",
     "emoji": "🗿",
     "tier": "surge",
+    "concentration": 3,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -514,6 +528,7 @@
     "name": "Flooding",
     "emoji": "🌊",
     "tier": "surge",
+    "concentration": 3,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -529,6 +544,7 @@
     "name": "Wind",
     "emoji": "🌬️",
     "tier": "storm",
+    "concentration": 4,
     "phase_weights": {
       "wood": 1.0,
       "fire": 0.0,
@@ -544,6 +560,7 @@
     "name": "Heart",
     "emoji": "❤️",
     "tier": "storm",
+    "concentration": 4,
     "phase_weights": {
       "wood": 0.0,
       "fire": 1.0,
@@ -559,6 +576,7 @@
     "name": "Mud",
     "emoji": "🟤",
     "tier": "storm",
+    "concentration": 4,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -574,6 +592,7 @@
     "name": "Drought",
     "emoji": "🏜️",
     "tier": "storm",
+    "concentration": 4,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -589,6 +608,7 @@
     "name": "Frost",
     "emoji": "❄️",
     "tier": "storm",
+    "concentration": 4,
     "phase_weights": {
       "wood": 0.0,
       "fire": 0.0,
@@ -1423,5 +1443,85 @@
     },
     "surface_lore": "Cold, dry, treeless land.",
     "true_name": null
+  },
+  {
+    "id": "blight",
+    "name": "Blight",
+    "emoji": "🥀",
+    "tier": "overflow",
+    "concentration": 5,
+    "phase_weights": {
+      "wood": 1.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Growth turned against itself — every shoot rotting before it leafs.",
+    "true_name": "Liver Wind overflow (肝風盛)"
+  },
+  {
+    "id": "heatwave",
+    "name": "Heatwave",
+    "emoji": "🥵",
+    "tier": "overflow",
+    "concentration": 5,
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 1.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Heat with nowhere to escape — air, ground, and pulse all running over.",
+    "true_name": "Heart Heat overflow (心熱盛)"
+  },
+  {
+    "id": "avalanche",
+    "name": "Avalanche",
+    "emoji": "🏔️",
+    "tier": "overflow",
+    "concentration": 5,
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 1.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "The ground giving way at scale — what was holding stops holding all at once.",
+    "true_name": "Spleen Dampness overflow (脾濕盛)"
+  },
+  {
+    "id": "wasteland",
+    "name": "Wasteland",
+    "emoji": "🦴",
+    "tier": "overflow",
+    "concentration": 5,
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 1.0,
+      "water": 0.0
+    },
+    "surface_lore": "Country gone bone-dry — structure remaining, life departed.",
+    "true_name": "Lung Dryness overflow (肺燥盛)"
+  },
+  {
+    "id": "maelstrom",
+    "name": "Maelstrom",
+    "emoji": "🌀",
+    "tier": "overflow",
+    "concentration": 5,
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 1.0
+    },
+    "surface_lore": "Cold water finding a center and pulling everything into it.",
+    "true_name": "Kidney Cold overflow (腎寒盛)"
   }
 ]

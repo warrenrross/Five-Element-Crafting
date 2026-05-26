@@ -155,8 +155,8 @@ function renderRecipes(entityId) {
     if (!actor || !patient) return "";
     const moveLabel = MOVE_LABELS[rec.move_type] || rec.move_type;
     const stageNote =
-      rec._selfStage != null
-        ? ` <span class="recipe-stagenote">(stage ${rec._selfStage + 1})</span>`
+      rec._selfConcentration != null
+        ? ` <span class="recipe-stagenote">(concentration ${rec._selfConcentration})</span>`
         : "";
     return `
       <li class="recipe-item">

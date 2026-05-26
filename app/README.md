@@ -24,21 +24,21 @@ The live version is at <https://warrenrross.github.io/Five-Element-Crafting/>.
 
 - Three-panel layout: discoveries on the left, free-placement workspace in the center, five phase tiles on the right (per [`docs/design/ui-layout.md`](../docs/design/ui-layout.md)).
 - Drag a phase tile onto the workspace to spawn it.
-- Drag one workspace entity onto another to craft. Ordered-pair lookup against `src/data/recipes.json` (110 recipes covering all 95 v1 entities).
+- Drag one workspace entity onto another to craft. Ordered-pair lookup against `src/data/recipes.json` (110 recipes covering the cross-phase results). Same-phase combinations resolve via the concentration-additive rule below.
 - Move-type cues (`docs/design/ui-layout.md §3.3`):
   - Sheng → green halo + pulse-up ("Infuse")
   - Ke → red halo + press-down ("Consume")
   - Self → gold halo + brightness hold ("Concentrate")
   - Insub → purple halo + horizontal shake ("Disturb")
   - Stage-2 → neutral indigo + rotate
-- Self-craft walks Feeling → Surge → Storm via a per-element counter (`engine/self-state.js`).
+- Self-craft is **concentration-additive**: every entity carries a `concentration` value (1 phase, 2 feeling, 3 surge, 4 storm, 5 overflow). Combining two same-phase entities sums their concentrations and looks up the result in `src/data/self_progression.json`. Anger (2) + Anger (2) lands on Wind (4) directly. Concentration ≥5 produces a self-overflow catastrophe (Blight / Heatwave / Avalanche / Wasteland / Maelstrom). See [`docs/design/game-interaction-grid.md`](../docs/design/game-interaction-grid.md) §3.
 - Null drops snap back and show a label for the first three nulls in a session.
 - Catastrophe drops trigger a ~2-second lockout overlay.
 - Discoveries ledger persists in `localStorage` under `fec.discoveries.v1`.
 - Clicking a discovered entry in the left panel spawns a copy on the workspace and opens inspect. Shift-click inspects without spawning.
 - Inspect drawer shows Surface lore, true-name (literal Wu Xing reading), phase-weight chips, and "Made by" recipes.
 - **Clear** button removes everything from the workspace. Discoveries stay.
-- **Reset** button wipes the entire game state: workspace, discoveries ledger, self-stage counters, Balance-mode histogram, and any in-progress puzzle. Returns to Explore mode.
+- **Reset** button wipes the entire game state: workspace, discoveries ledger, Balance-mode histogram, and any in-progress puzzle. Returns to Explore mode.
 
 ### Balance mode (the puzzle)
 
@@ -75,8 +75,7 @@ app/
   src/
     main.js                  # entry; wires panels, modes, modals
     engine/
-      recipes.js             # data loader, resolve(), discoveries ledger
-      self-state.js          # per-element self-stage counter
+      recipes.js             # data loader, resolve() (incl. concentration rule), ledger
       balance.js             # BalanceSession class, deltas, pathologies, scoring
       pcg.js                 # backward-chain puzzle generator
     ui/
@@ -88,9 +87,9 @@ app/
       balance-hud.js         # budget, pathology tray, difficulty, end overlay
       touch-drag.js          # Pointer Events drag-drop for touchscreens
     data/
-      entities.json          # 95 entities
-      recipes.json           # 110 ordered-pair recipes
-      self_progression.json  # Phase → Feeling → Surge → Storm
+      entities.json          # 100 entities (95 v1 + 5 self-overflow catastrophes)
+      recipes.json           # 110 ordered-pair recipes (cross-phase)
+      self_progression.json  # phase × concentration → result lookup
       catastrophes.json      # IDs that trigger the lockout overlay
     styles/
       main.css               # all styles, including the 600px breakpoint

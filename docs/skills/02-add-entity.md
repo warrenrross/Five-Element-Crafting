@@ -1,6 +1,6 @@
 # Skill 2 — Add a new entity
 
-A new craftable noun (Sheng result, Ke result, Feeling, Surge, Storm, stage-2, or catastrophe). This is the most common kind of game-content change.
+A new craftable noun (Sheng result, Ke result, Feeling, Surge, Storm, self-overflow, stage-2, or catastrophe). This is the most common kind of game-content change.
 
 ## Touchpoints
 
@@ -19,7 +19,8 @@ Decide the entity by writing it down. For each new entity you need:
 - `id` — `kebab-case`. Stable forever; the recipe table refers to it.
 - `name` — display label. Must pass the predict-your-next-drag principle.
 - `emoji` — a single grapheme. Test on iOS and Android since some emojis render very differently across platforms.
-- `tier` — one of `phase`, `sheng`, `ke`, `feeling`, `surge`, `storm`, `insub`, `stage_2_sheng_sheng`, `stage_2_ke_ke`, `stage_2_sheng_ke`, `stage_2_refined`, `stage_2_catastrophe`.
+- `tier` — one of `phase`, `sheng`, `ke`, `feeling`, `surge`, `storm`, `overflow`, `insub`, `stage_2_sheng_sheng`, `stage_2_ke_ke`, `stage_2_sheng_ke`, `stage_2_refined`, `stage_2_catastrophe`.
+- `concentration` — integer 1–5. Required for any entity with a pure-phase `phase_weights` (one phase at 1.0, the rest 0.0). The engine uses this to resolve same-phase combinations additively: 1 (phase), 2 (feeling), 3 (surge), 4 (storm), 5 (overflow). Mixed-phase entities (stage-2 etc.) typically omit this field.
 - `phase_weights` — five floats `{wood, fire, earth, metal, water}` summing to 1.0. Determines the Balance-mode score contribution. For stage-2 entities, the default rule is the inherited average of inputs; deviate only when you have a real reason.
 - `surface_lore` — one short sentence in the inspect-drawer voice. Concrete, no jargon. Drawn from the lore column in `game-interaction-grid.md` and expanded into the inspect-panel voice per `inspect-copy.md`.
 - `true_name` — the literal Wu Xing reading with the original Chinese (e.g. `"Wood (木)"`, `"Liver Wind (肝風)"`). Surfaced in the inspect drawer's "Reading" section.
@@ -33,6 +34,29 @@ Add the entity row to `stage-2-crafts.md` (or `game-interaction-grid.md` for sta
 ### 3. Add to the runtime catalog
 
 Append to `app/src/data/entities.json`:
+
+Pure-phase entity (e.g. a new Feeling/Surge/Storm/Overflow):
+
+```json
+{
+  "id": "your-id",
+  "name": "Your Name",
+  "emoji": "🌟",
+  "tier": "feeling",
+  "concentration": 2,
+  "phase_weights": {
+    "wood": 1.0,
+    "fire": 0.0,
+    "earth": 0.0,
+    "metal": 0.0,
+    "water": 0.0
+  },
+  "surface_lore": "Short concrete description.",
+  "true_name": "Reading (字)"
+}
+```
+
+Mixed-phase entity (e.g. a stage-2 result):
 
 ```json
 {
@@ -58,7 +82,7 @@ The order within the file is by tier, then alphabetical. Keep the convention.
 
 If you've changed the count, update the totals in:
 
-- `app/README.md` (currently "95 entities")
+- `app/README.md` (currently "100 entities")
 - `README.md` (mentions of the count)
 - `docs/design/stage-2-crafts.md` §0 if the tier breakdown changed
 - `app/src/ui/discoveries.js` — group caps (`5/5`, `10/10`, etc.) are derived from the tier counts; only touch if you've added a whole new tier
@@ -79,6 +103,7 @@ The new entity should:
 
 - **Don't change an existing `id`.** If you rename, change `name` only. IDs are referential — every recipe pointing at the entity would break.
 - **`phase_weights` must sum to ~1.0.** The code doesn't currently enforce this, but Balance-mode scoring assumes it. If you skew, document why in the lore field.
+- **Concentration is required for pure-phase entities.** Without it, the same-phase resolver falls back to a concentration of 1 and you'll get the wrong result. If you add a new tier in between feeling and storm, you also need to extend the `self_progression.json` row and the `SELF_DELTA_BY_CONCENTRATION` table in `app/src/engine/balance.js`.
 - **The Reset button re-seeds only the five `phase` tier entities** as initially-discovered. If you're adding a new entity that should be available at start (rare), update the `PHASES` import in `main.js`.
 - **Emoji width varies.** A flag or compound emoji can blow out the tile grid. Test on the smallest viewport before committing.
 
