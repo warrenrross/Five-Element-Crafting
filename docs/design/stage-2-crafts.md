@@ -127,13 +127,13 @@ A handful of cross-element cells that produce strong, surprising entities. These
 
 | # | Actor → Patient | Result | Emoji | `phase_weights` | Lore |
 |---|---|---|---|---|---|
-| 56 | Forge → Sapling | **Inlay** | 🪵 | Fire 0.35, Metal 0.35, Wood 0.3 | Hot metal pressed into wood. Decoration, signature, claim of ownership. |
-| 57 | Rain → Ore | **Rust-Ore** | 🟧 | Water 0.5, Earth 0.25, Metal 0.25 | Rain meeting raw metal in the ground. The slow corrosion that defines all unworked ore. (Distinct from `Rust` in the insubordinate grid — that one is finished-metal decay.) |
-| 58 | Dam → Kindling | **Pyre** | 🔥 | Earth 0.35, Water 0.15, Wood 0.25, Fire 0.25 | A contained Fire with fuel. The Dam's containment turned to burning. |
-| 59 | Roots → Dew | **Spring-Well** | 💧 | Wood 0.35, Metal 0.25, Water 0.4 | A water-source the roots have found. Distinct from #49 (which is Dew → Roots = a Spring): here the actor is the binding root finding the source. |
-| 60 | Axe → Dew | **Frost-Edge** | 🗡️ | Metal 0.5, Water 0.35, Wood 0.15 | An edged tool used in cold conditions, picking up condensate. The single coldest entity in the game. |
+| 56 | Forge → Sapling | **Brand** | 🪵 | Fire 0.35, Metal 0.35, Wood 0.3 | Hot metal pressed into wood. The mark of ownership, the signature burned in. (Ratified 2026-05-26: was "Inlay" — replaced for predict-your-next-drag readability. See [`naming-ratification.md`](./naming-ratification.md).) |
+| 57 | Rain → Ore | **Patina** | 🟧 | Water 0.5, Earth 0.25, Metal 0.25 | Rain meeting raw metal in the ground. The slow natural oxidation of unworked ore — distinct from the destructive `Rust` of the insubordinate grid, which is finished-metal decay. (Ratified 2026-05-26: was "Rust-Ore" — replaced to avoid conceptual collision with Rust.) |
+| 58 | Dam → Kindling | **Pyre** | 🔥 | Earth 0.35, Water 0.15, Wood 0.25, Fire 0.25 | A contained Fire with fuel. The Dam's containment turned to burning. Intentionally not a Storm — the containment is still holding. |
+| 59 | Roots → Dew | **Wellspring** | 💧 | Wood 0.35, Metal 0.25, Water 0.4 | An underground water source the roots have found. Distinct from #49 **Spring** (Dew → Roots): there the water-source is feeding the roots; here the roots are seeking the source. (Ratified 2026-05-26: was "Spring-Well" — replaced because hyphenated and indistinguishable from #49.) |
+| 60 | Axe → Dew | **Rime** | 🗡️ | Metal 0.5, Water 0.35, Wood 0.15 | An edged tool used in cold conditions, picking up frozen condensate. The single coldest entity in the game outside the catastrophes. (Ratified 2026-05-26: was "Frost-Edge" — replaced with the precise meteorological single word.) |
 
-**Section observations.** Stage-2 cross-products carry between 2 and 4 nonzero phase-weights each. The 4-way ones (Frost-Edge, Spring-Well, Inlay) are the most *blended* — Balance/Harmonize mode will value them differently than the 2-way pure pairs (Tinder, Bloom, Ingot, Plank).
+**Section observations.** Stage-2 cross-products carry between 2 and 4 nonzero phase-weights each. The 4-way ones (Rime, Wellspring, Brand) are the most *blended* — Balance/Harmonize mode will value them differently than the 2-way pure pairs (Tinder, Bloom, Ingot, Plank).
 
 ### Nulls in §3
 
@@ -181,11 +181,11 @@ Order does not matter — catastrophes are pure intensity events. The recipe tab
 | 73 | Wind + Drought | **Dustbowl** | 🏜️ | Wood 0.5, Metal 0.5 | Wind across parched land. The most arid catastrophe in the set. |
 | 74 | Wind + Frost | **Blizzard** | 🌨️ | Wood 0.5, Water 0.5 | Wind plus cold. The classical Wood-Water excess collision, surfaced as winter at its worst. |
 | 75 | Heart + Mud | **Eruption** | 🌋 | Fire 0.5, Earth 0.5 | Heat trapped under earth bursts. The most violent terrestrial catastrophe. |
-| 76 | Heart + Drought | **Wildstorm** | 🔥 | Fire 0.5, Metal 0.5 | Uncontrolled fire across dry country. The wildfire pattern at full intensity. (Distinct from the §4 Inferno, which is still contained.) |
-| 77 | Heart + Frost | **Steam-Storm** | ♨️ | Fire 0.5, Water 0.5 | Boiling fog where Fire and Water collide at scale. The most physically violent steam state. (Distinct from the insubordinate Steam in §4.4 of `game-interaction-grid.md`, which is one entity colliding; this is two Storms.) |
-| 78 | Mud + Drought | **Cracked-Earth** | 🪨 | Earth 0.5, Metal 0.5 | Dampness baked then split open. Earth-Metal excess. |
+| 76 | Heart + Drought | **Conflagration** | 🔥 | Fire 0.5, Metal 0.5 | Uncontrolled fire across dry country at full intensity. Distinct from the insubordinate **Wildfire** (one element acting out) and the refined **Inferno** (still contained). (Ratified 2026-05-26: was "Wildstorm" — replaced to disambiguate the Fire family.) |
+| 77 | Heart + Frost | **Geyser** | ♨️ | Fire 0.5, Water 0.5 | Boiling water and steam erupting from the ground where Fire and Water collide at scale. Distinct from the insubordinate **Steam** (one element acting out). (Ratified 2026-05-26: was "Steam-Storm" — replaced because it literally contained "Steam" as a substring.) |
+| 78 | Mud + Drought | **Fissure** | 🪨 | Earth 0.5, Metal 0.5 | A deep crack in dampness baked then split open. Earth-Metal excess. (Ratified 2026-05-26: was "Cracked-Earth" — replaced with the precise geological single word.) |
 | 79 | Mud + Frost | **Permafrost** | ❄️ | Earth 0.5, Water 0.5 | Saturated ground frozen solid. Locked, immovable. |
-| 80 | Drought + Frost | **Hardpack** | 🏔️ | Metal 0.5, Water 0.5 | The driest cold. Metal-Water excess — the bottom of winter. |
+| 80 | Drought + Frost | **Tundra** | 🏔️ | Metal 0.5, Water 0.5 | Cold, dry, treeless land — the bottom of winter. Metal-Water excess as a recognized biome. (Ratified 2026-05-26: was "Hardpack" — replaced with the canonical biome name.) |
 
 **Section observations.** Every catastrophe is a 50/50 phase weight, because Storms are 100%-actor-phase and combining two of them produces a perfect cross. This means in Balance/Harmonize mode, a catastrophe contributes equally to both of its parent phases' excess readings — making catastrophes the most efficient way to *unbalance* the pentagram, and therefore the most expensive things to produce in puzzle mode.
 
@@ -284,8 +284,8 @@ For the v1 clone we can fit this entire structure in a flat file under 50 KB, no
 
 ## 9. What stays open
 
-- **Final names for the 10 catastrophes.** Names in §5 are my best calls but worth a second pass once the discoveries panel mockup exists.
-- **Final names for §3.3 mixed-element bridges.** Inlay, Rust-Ore, Pyre, Spring-Well, Frost-Edge — these are the most invented names in the doc. Some may want renaming during inspect-copy authoring.
+- ~~**Final names for the 10 catastrophes.**~~ Ratified 2026-05-26 in [`naming-ratification.md`](./naming-ratification.md). Four renames: Wildstorm → Conflagration, Steam-Storm → Geyser, Cracked-Earth → Fissure, Hardpack → Tundra. Six keeps: Firestorm, Sandstorm, Dustbowl, Blizzard, Eruption, Permafrost.
+- ~~**Final names for §3.3 mixed-element bridges.**~~ Ratified 2026-05-26 in [`naming-ratification.md`](./naming-ratification.md). Four renames: Inlay → Brand, Rust-Ore → Patina, Spring-Well → Wellspring, Frost-Edge → Rime. One keep: Pyre.
 - **The deliberate-nulls list in §3.** Currently implicit (any pair not authored = null). Worth enumerating once the implementation starts so the close-to-recipe nudge has a target.
 - **The phase-weight numbers themselves.** The 0.5 / 0.7 / 0.85 / 0.9 distinctions are reasoned but not playtested. Expect to tune these once Balance/Harmonize mode exists and the pentagram readout is visible.
 - **The Surges and the §4 refined variants — overlap check.** Currently disjoint, but Drought (Storm) and Bedrock (refined Earth) both lean structural. Worth re-reading the inspect copy to make sure their voices stay distinct.
