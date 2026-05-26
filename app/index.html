@@ -23,6 +23,7 @@
         <div id="catastrophe-overlay" class="hidden"></div>
         <div id="nudge"></div>
         <button id="clear-btn" class="workspace-button" type="button">Clear</button>
+        <button id="reset-btn" class="workspace-button workspace-button-reset" type="button">Reset</button>
 
         <div id="mode-toggle" class="mode-toggle">
           <button id="mode-explore" class="mode-btn active" type="button">Explore</button>
@@ -69,6 +70,17 @@
         <div class="modal-actions">
           <button id="clear-confirm" type="button">Clear</button>
           <button id="clear-cancel" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="reset-modal" class="modal hidden" role="dialog" aria-labelledby="reset-modal-title">
+      <div class="modal-body">
+        <h3 id="reset-modal-title">Reset the whole game?</h3>
+        <p>This clears the workspace, wipes your discoveries, resets self-stage progression, and ends any Balance puzzle in progress. This cannot be undone.</p>
+        <div class="modal-actions">
+          <button id="reset-confirm" type="button">Reset everything</button>
+          <button id="reset-cancel" type="button">Cancel</button>
         </div>
       </div>
     </div>

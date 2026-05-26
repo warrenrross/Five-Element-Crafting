@@ -11,8 +11,10 @@ import {
   ensureLedger,
   isDiscovered,
   recordDiscovery,
+  resetLedger,
   getEntity,
 } from "./engine/recipes.js";
+import { resetSelfStages } from "./engine/self-state.js";
 import { initPhasePanel } from "./ui/phase-panel.js";
 import { initDiscoveries, refresh as refreshDiscoveries } from "./ui/discoveries.js";
 import {
@@ -94,6 +96,7 @@ async function main() {
   });
 
   wireClearButton();
+  wireResetButton();
   wireModeToggle();
 }
 
@@ -212,6 +215,59 @@ function wireClearButton() {
   document.addEventListener("keydown", (ev) => {
     if (ev.key === "Escape" && !modal.classList.contains("hidden")) close();
   });
+}
+
+/**
+ * Reset the whole game board: workspace, discoveries ledger, self-stage
+ * counters, Balance session, mode, and any open overlays. Phases are
+ * re-recorded so the left panel doesn't start with locked phase cells —
+ * matches the first-load behavior in main().
+ */
+function wireResetButton() {
+  const btn = document.getElementById("reset-btn");
+  const modal = document.getElementById("reset-modal");
+  const confirmBtn = document.getElementById("reset-confirm");
+  const cancelBtn = document.getElementById("reset-cancel");
+
+  const open = () => modal.classList.remove("hidden");
+  const close = () => modal.classList.add("hidden");
+
+  btn.addEventListener("click", open);
+  cancelBtn.addEventListener("click", close);
+  confirmBtn.addEventListener("click", () => {
+    resetGame();
+    close();
+  });
+  modal.addEventListener("click", (ev) => {
+    if (ev.target === modal) close();
+  });
+  document.addEventListener("keydown", (ev) => {
+    if (ev.key === "Escape" && !modal.classList.contains("hidden")) close();
+  });
+}
+
+function resetGame() {
+  // 1. End any Balance session and snap back to Explore (uses the existing
+  //    setMode teardown, which clears the workspace, hides HUD/pentagram/
+  //    end-overlay, and drops the BalanceSession reference).
+  if (currentMode === "balance") {
+    setMode("explore");
+  } else {
+    clearWorkspace();
+  }
+
+  // 2. Wipe persistent state.
+  resetLedger();
+  resetSelfStages();
+  resetSessionHistogram();
+
+  // 3. Re-seed the phases as discovered (parity with first-load).
+  for (const phaseId of PHASES) {
+    if (!isDiscovered(phaseId)) recordDiscovery(phaseId);
+  }
+
+  // 4. Repaint the discoveries panel so the counter and locked cells refresh.
+  refreshDiscoveries();
 }
 
 function showFatal(err) {
