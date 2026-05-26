@@ -1124,3 +1124,34 @@ html, body {
     width: 100vw;
   }
 }
+
+/* ---------- Touch-drag (mobile) ---------- */
+
+/* Prevent system gestures (text-select callout, image preview) from
+   firing on a long-press of any draggable. */
+.phase-tile,
+.workspace-entity,
+.pathology-token {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ghost element follows the finger. We clone the source so it carries
+   the same emoji/name; just dim it and lift it off the surface. */
+.touch-drag-ghost {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+  border-radius: var(--radius-sm);
+  background: rgba(30, 30, 38, 0.95);
+  pointer-events: none;
+  /* Override absolute positioning from the source's .workspace-entity etc. */
+  left: 0 !important;
+  top: 0 !important;
+}
+
+/* The source element fades while its ghost is being dragged. */
+.phase-tile.dragging,
+.workspace-entity.dragging {
+  opacity: 0.4;
+}

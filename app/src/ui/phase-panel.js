@@ -4,6 +4,8 @@
  */
 
 import { getEntity } from "../engine/recipes.js";
+import { makeTouchDraggable } from "./touch-drag.js";
+import { dispatchPhaseDrop } from "./workspace.js";
 
 const PHASE_ORDER = ["wood", "fire", "earth", "metal", "water"];
 
@@ -48,6 +50,15 @@ export function initPhasePanel(opts = {}) {
         ev.stopPropagation();
         onInspect(entity);
       }
+    });
+
+    // Touch path — mirrors the desktop dragstart -> drop flow.
+    makeTouchDraggable(tile, {
+      getPayload: () => id,
+      makeGhost: () => tile.cloneNode(true),
+      onDragStart: () => { tile.classList.add("dragging"); tile.dataset.justDragged = "1"; },
+      onDragEnd:   () => tile.classList.remove("dragging"),
+      dispatch: (phaseId, ctx) => dispatchPhaseDrop(phaseId, ctx),
     });
 
     container.appendChild(tile);

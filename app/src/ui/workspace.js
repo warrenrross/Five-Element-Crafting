@@ -17,6 +17,7 @@ import {
   getEntity,
 } from "../engine/recipes.js";
 import { getSelfStage, advanceSelfStage } from "../engine/self-state.js";
+import { makeTouchDraggable } from "./touch-drag.js";
 const NUDGE_LIMIT = 3;
 
 // State
@@ -54,6 +55,92 @@ export function getBalanceSession() {
 
 export function workspaceElement() {
   return workspaceEl;
+}
+
+/**
+ * Touch-drag entry point: a phase tile was released somewhere on the page.
+ * Mirrors handleWorkspaceDrop + handleEntityDrop for the phase-payload case.
+ */
+export function dispatchPhaseDrop(phaseId, { clientX, clientY, targetEl }) {
+  if (lockoutActive) return;
+  const actorEntity = getEntity(phaseId);
+  if (!actorEntity) return;
+
+  // If released on a pathology token, let its own touch-drop handle it.
+  if (targetEl && targetEl.classList.contains("pathology-token")) {
+    return dispatchPathologyDrop(actorEntity, targetEl);
+  }
+
+  // If released on a workspace entity, run a craft.
+  if (targetEl && targetEl.classList.contains("workspace-entity")) {
+    const patientEntity = getEntity(targetEl.dataset.entityId);
+    resolveCraft({
+      actorEntity,
+      actorEl: null,
+      patientEl: targetEl,
+      patientEntity,
+    });
+    return;
+  }
+
+  // If released on the workspace background, spawn the phase there.
+  if (targetEl && targetEl.id === "workspace") {
+    const ws = workspaceEl.getBoundingClientRect();
+    spawnEntity(actorEntity, clientX - ws.left, clientY - ws.top);
+  }
+}
+
+/**
+ * Touch-drag entry point: a workspace entity was released.
+ * Mirrors the dragend + entity-drop case.
+ */
+export function dispatchEntityDrop(actorKey, { clientX, clientY, targetEl }) {
+  if (lockoutActive) return;
+  const actorEl = entitiesEl.querySelector(`[data-key="${actorKey}"]`);
+  if (!actorEl) return;
+  const actorEntity = getEntity(actorEl.dataset.entityId);
+  if (!actorEntity) return;
+
+  // Pathology token target.
+  if (targetEl && targetEl.classList.contains("pathology-token")) {
+    return dispatchPathologyDrop(actorEntity, targetEl);
+  }
+
+  // Workspace entity target (and not itself) -> craft.
+  if (
+    targetEl &&
+    targetEl.classList.contains("workspace-entity") &&
+    targetEl !== actorEl
+  ) {
+    const patientEntity = getEntity(targetEl.dataset.entityId);
+    resolveCraft({ actorEntity, actorEl, patientEntity, patientEl: targetEl });
+    return;
+  }
+
+  // Workspace background -> reposition.
+  if (targetEl && targetEl.id === "workspace") {
+    const ws = workspaceEl.getBoundingClientRect();
+    const newLeft = clamp(clientX - ws.left - 36, 0, ws.width - 72);
+    const newTop  = clamp(clientY - ws.top  - 36, 0, ws.height - 72);
+    actorEl.style.left = `${newLeft}px`;
+    actorEl.style.top  = `${newTop}px`;
+  }
+}
+
+function dispatchPathologyDrop(actorEntity, tokenEl) {
+  if (!balanceSession) return;
+  const phaseId = tokenEl.dataset.pathologyPhase;
+  const idx = balanceSession.pathologyTokens.indexOf(phaseId);
+  const result = balanceSession.clearPathology(actorEntity, idx);
+  if (result.ok) {
+    tokenEl.classList.add("cleared");
+    setTimeout(() => tokenEl.remove(), 300);
+    onSessionUpdate && onSessionUpdate();
+    if (balanceSession.outcome) onSessionEnd && onSessionEnd();
+  } else {
+    tokenEl.classList.add("reject");
+    setTimeout(() => tokenEl.classList.remove("reject"), 300);
+  }
 }
 
 // One unique DOM id per workspace entity
@@ -183,6 +270,19 @@ function attachEntityDragHandlers(el) {
     ev.stopPropagation();
     el.classList.remove("drop-target");
     handleEntityDrop(el, ev);
+  });
+
+  // Touch path — dispatch by data-key so we don't capture stale references.
+  makeTouchDraggable(el, {
+    getPayload: () => el.dataset.key,
+    makeGhost: () => el.cloneNode(true),
+    onDragStart: () => {
+      if (lockoutActive) return;
+      el.classList.add("dragging");
+      el.dataset.justDragged = "1";
+    },
+    onDragEnd: () => el.classList.remove("dragging"),
+    dispatch: (actorKey, ctx) => dispatchEntityDrop(actorKey, ctx),
   });
 }
 
