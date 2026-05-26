@@ -2,6 +2,29 @@
 
 Session-to-session handoff notes for Five-Element-Crafting. Matches the convention used in [Hand_AI](https://github.com/warrenrross/Hand_AI) and [gesture-detect-research](https://github.com/warrenrross/gesture-detect-research).
 
+## 2026-05-26 (latest+3) — Skills catalog landed; READMEs refreshed
+
+Shipped this session:
+
+1. **New `SKILLS.md` at repo root + `docs/skills/` directory.** Eleven skill files, one per recurring workflow: local dev loop, add entity, add recipe, regenerate data, headless smoke test, mobile + touch testing, add UI surface, tune Balance, deploy to Pages, AGENT_NOTES handoff, add mechanic. Each skill is prescriptive: touchpoints → procedure → gotchas → related. The catalog index at `SKILLS.md` includes a quick reference table, a where-things-live map, and the project conventions that hold across every skill (predict-your-next-drag principle, design-docs-as-source-of-truth, no-build-step, etc.).
+2. **`app/README.md` refreshed.** Previously claimed Balance mode and Reset and touch-drag were "not in v1". Now accurately documents all three, plus the touch-drag layer, the 600px breakpoint, and links to the skill catalog.
+3. **Root `README.md` updated** to point at `SKILLS.md` and `docs/skills/` from the where-to-start list.
+4. **Verified zero broken markdown links** across the whole repo (Python script in this session, not committed).
+
+**Deferred — pending need**:
+
+- **`tools/build_data.py` regeneration script.** Skill 4 documents what it should do and how to reconstruct it if missing. The script itself was written in `/tmp/` during the v1 scaffold session and never committed. Future contributors will need to either reconstruct it (skill 4 has the recipe) or accept that bulk entity/recipe changes get edited by hand. Not blocking until we actually need a bulk regen.
+- **Persistent Balance-mode histogram.** Currently in-memory only. Persisting to localStorage would give long-term distribution control across sessions, but adds a migration concern and isn't needed until playtest data demands it.
+
+## 2026-05-26 (latest+2) — Touch-drag layer for mobile
+
+*(Previously: "Reset button added")*
+
+This entry covers two earlier sessions that didn't get logged at the time:
+
+1. **Reset button.** Distinct from Clear: wipes workspace + discoveries ledger + self-stage counters + Balance-mode session histogram + any in-progress puzzle, returns to Explore mode. Red-tinted border, confirm modal, re-seeds the five phase entities as discovered to match first-load. See `wireResetButton()` and `resetGame()` in `main.js`.
+2. **Touch-drag.** New `app/src/ui/touch-drag.js` provides a `makeTouchDraggable()` helper using Pointer Events. Coexists with HTML5 drag-drop (only fires for `pointerType !== "mouse"`). Workspace.js exports `dispatchPhaseDrop`, `dispatchEntityDrop`, `dispatchPathologyDrop` so the touch path reuses the same business logic as the desktop drop handlers. 6px move threshold + 180ms long-press, `body.touchAction = "none"` during drags, ghost element follows the finger. Verified end-to-end on synthetic iPhone 13 viewport including Balance-mode crafts and Reset.
+
 ## 2026-05-26 (latest+1) — Balance mode landed, mobile pass, Pages deploy
 
 Shipped this session:

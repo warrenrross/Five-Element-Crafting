@@ -28,7 +28,9 @@ Two modes are planned:
 ## Where to start
 
 - [`app/`](./app/) — the v1 scaffold (vanilla JS, no build step).
+- [`SKILLS.md`](./SKILLS.md) — catalog of recurring workflows for working on the game (add an entity, tune Balance, deploy, etc.).
 - [`docs/design/`](./docs/design/) — game mechanics, the 25-cell interaction grid, mode design, UI layout notes, ratified naming, inspect copy.
+- [`docs/skills/`](./docs/skills/) — the long-form skill files referenced from `SKILLS.md`.
 - [`docs/research/`](./docs/research/) — the Wu Xing source material and the Infinite Craft architecture reference that informs the backend shape.
 - [`AGENT_NOTES.md`](./AGENT_NOTES.md) — session-to-session handoff notes, matching the convention in [Hand_AI](https://github.com/warrenrross/Hand_AI) and [gesture-detect-research](https://github.com/warrenrross/gesture-detect-research).
 
