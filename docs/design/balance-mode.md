@@ -92,11 +92,22 @@ Player-facing copy: **"Metal consumes Wood. −0.05 Wood, +0.02 Metal."**
 
 ### 5.3 Self move — *Concentrate*
 
-Drag actor onto itself. The actor's weight increases by a larger amount (`Δ_self = 0.08`), because the entity produced is a pure actor-phase entity (Surge or Storm, both 100% actor's phase per [`stage-2-crafts.md`](./stage-2-crafts.md) §7). **Self moves do not redistribute** — they concentrate. Useful in Balance only when one phase is critically deficient and no Sheng path exists. Otherwise it makes the imbalance worse.
+Drag actor onto itself, **or onto any phase-pure entity of the same phase**. Per the concentration-additive rule ([`game-interaction-grid.md`](./game-interaction-grid.md) §3, ratified 2026-05-26), self-craft produces a result whose tier equals the sum of the two inputs' concentrations. The actor's phase weight increases proportionally:
 
-Player-facing copy: **"Wood concentrates. +0.08 Wood."**
+| Sum | Tier | Result | `Δ_self` | Notes |
+|---|---|---|---|---|
+| 2 | Feeling | Anger / Joy / Worry / Grief / Fear | **+0.05** | One-step intensification. Same magnitude as a Sheng move. |
+| 3 | Surge | Overgrowth / Restlessness / Stagnation / Rigidity / Flooding | **+0.10** | Doubled. Stronger lift but also a sharper imbalance. |
+| 4 | Storm | Wind / Heart / Mud / Drought / Frost | **+0.15** | Largest *useful* single move in Balance. Risky — a Storm on the bench is one Wood-drop away from overflow. |
+| ≥5 | Overflow | Blight / Heatwave / Avalanche / Wasteland / Maelstrom | **+0.20** + budget penalty | Self-overflow catastrophe. Per [`stage-2-crafts.md`](./stage-2-crafts.md) §5.5, this triggers the same workspace lockout *and* the same budget-down-to-1 penalty as a Storm × Storm catastrophe. Almost always a losing move. |
 
-The three-stage reveal (emotion → surge → storm) from [`game-interaction-grid.md`](./game-interaction-grid.md) §3 still triggers — Balance mode counts self-crafts per session like Explore does. In Balance this matters because Stage-3 Storms unlock catastrophes, which are usually a losing move (see §7).
+**Self moves do not redistribute** — they concentrate. They are useful in Balance only when one phase is critically deficient and no Sheng path exists; otherwise they make the imbalance worse.
+
+Player-facing copy: **"Wood concentrates. +0.05 Wood."** (or +0.10, +0.15, +0.20 depending on the produced tier).
+
+**Why the Δ_self values scale linearly with tier.** The previous design used a flat `Δ_self = 0.08` for every self-craft, paired with a hidden session counter that determined whether a Wood + Wood produced Anger, Overgrowth, or Wind. The 2026-05-26 ratification dropped the counter — state now lives on the entity as `concentration` — so the produced tier (and therefore the pentagram impact) is fully predictable from the inputs. The linear scale (0.05 / 0.10 / 0.15 / 0.20) keeps the per-concentration cost constant: every +1 of concentration on the workspace costs the same +0.05 of phase weight, regardless of which tier produced it. This is the same arithmetic the PCG pipeline (§8) needs to walk backwards through self-crafts when generating solvable puzzles.
+
+**Overflow as a catastrophe path.** Producing a self-overflow (concentration ≥5) is mechanically equivalent in Balance to producing a Storm × Storm catastrophe: terminal entity, workspace lockout, budget consumed to 1. But the *pentagram impact* differs: a Storm × Storm is 50/50 between two phases, while a self-overflow is 100% one phase. In a single-phase-deficient puzzle this can be a desperation lift; in a single-phase-excess puzzle it's an instant loss. The PCG pipeline (§8) should treat self-overflow as a high-variance move and avoid generating puzzles whose only solution requires one.
 
 ### 5.4 Insubordinate move — *Disturb*
 
@@ -112,7 +123,7 @@ Picked so that a balanced budget of 6 moves can solve a typical generated puzzle
 
 - **Sheng Δ = 0.05** gives 6 moves a 0.30 total swing capacity in one direction (enough to lift the lowest phase from a starting 0.05 to 0.35, well past the win threshold).
 - **Ke Δ = 0.05 / δ = 0.02** means a Ke move has a 0.07 net swing (−0.05 patient + 0.02 actor). Slightly more *efficient per move* than Sheng if you need to both lower one and raise another simultaneously.
-- **Self Δ_self = 0.08** is the largest single-move delta, but only useful when *concentration* is wanted. Almost never in Balance.
+- **Self Δ_self scales linearly with concentration** (0.05 / 0.10 / 0.15 / 0.20 for tiers Feeling / Surge / Storm / Overflow per §5.3). The Storm-tier +0.15 is the largest *useful* single-move delta, but it leaves the bench one Wood-drop from overflow. Self-overflow's +0.20 is paired with a budget-down-to-1 penalty, which makes it almost always a losing move.
 
 The combination of Sheng-mostly and Ke-occasionally is the intended solution shape for most puzzles, which is what the PCG pipeline (§8) generates.
 
@@ -209,7 +220,7 @@ The prior-art survey §9 identifies *Gogyo Trick* (2021, Yamamoto) as the only p
 |------------|--------------------|----|------------------|---------------------------|
 | **Sheng** (Infuse) | Patient +Δ | Generative stage-1 result | No | Lift the deficient phase. The most common puzzle move. |
 | **Ke** (Consume) | Patient −Δ, Actor +δ | Constraining stage-1 result | No | Lower the excess phase. Cleanest "two-birds" move. |
-| **Self** (Concentrate) | Actor +Δ_self | Surge or Storm | No (but Storm × Storm = catastrophe, see §10) | Rare. Only when a deficient phase needs a fast lift and no Sheng path exists. |
+| **Self** (Concentrate) | Actor +Δ_self (0.05 / 0.10 / 0.15 / 0.20 by tier) | Feeling / Surge / Storm / Overflow per §5.3 | Yes — Storm × Storm and self-overflow (§5.5) both catastrophic | Rare. Storm-tier is the largest useful lift; self-overflow is almost always a losing move. |
 | **Insubordinate** (Disturb) | Patient ±δ_insub away from balance | Pathology variant | Yes — costs +1 token | Always a mistake in Balance. |
 
 The Gogyo Trick precedent matters because it validates that *four* distinct outcomes is a workable design rather than excessive — Yamamoto's game-of-the-year-nominated trick-taker shipped this exact distinction and players learned it. Our puzzle mode is asking the same cognitive lift of its players.
@@ -243,7 +254,7 @@ A failed puzzle shows: the pentagram in its final state, the solution path the g
 
 Feelings are produced by Stage-1 self-crafts (per [`decisions-for-richest-play.md`](./decisions-for-richest-play.md) §Q4e). In Explore they're a flavor mechanic. In Balance they become *strategic resources*:
 
-- A Self move costs one budget point, produces a Surge or Storm, **and** produces the Stage-1 Feeling for that phase (if not yet produced this session).
+- A Self move costs one budget point and produces a tiered result (Feeling / Surge / Storm / Overflow) per the concentration-additive rule (§5.3). Each Feeling produced this way still functions as the modifier token described in [`decisions-for-richest-play.md`](./decisions-for-richest-play.md) §Q4.
 - The five Feeling biases (Anger=forceful, Joy=generative, Worry=stalling, Grief=releasing, Fear=swap-actor-and-patient) survive into Balance unchanged.
 - Strategic use case: **Fear** (swap actor and patient) is especially valuable in Balance because it lets a single Feeling charge convert a Ke move into its mirror Ke move (e.g. Metal→Wood becomes Wood→Metal), which can be exactly the swap a tight puzzle requires.
 - A Feeling charge that resolves into a *null* (per §11 above) still consumes the budget move *and* spends the charge. Combined with the "no nudge" rule, this is the harshest interaction in Balance — and the one most likely to teach a player to plan ahead.

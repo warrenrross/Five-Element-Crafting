@@ -61,53 +61,91 @@ Actor subdues patient. Result is the concrete *thing that does the subduing*.
 
 ---
 
-## 3. Self — 5 elements × 3 stages
+## 3. Self — 5 elements × 4 tiers, concentration-additive
 
-Same element on itself. Three-stage reveal per element, counter scoped to the current session:
+**Ratified 2026-05-26 (replaces earlier session-counter rule).** Same element on itself. Each phase-pure entity carries a `concentration` integer (Wood, Fire, Earth, Metal, Water = 1). A self-pair drop **sums** the two entities' concentrations and produces the tier whose number equals the sum. Concentration of 5 or more overflows into the **self-overflow catastrophe** for that phase (per [`naming-ratification-overflow.md`](./naming-ratification-overflow.md)).
 
-- **Stage 1 — Feeling**: the calm emotional register of the phase.
-- **Stage 2 — Surge**: the phase taking on too much of itself.
-- **Stage 3 — Storm**: the phase manifesting at full intensity, named for its most recognizable natural form.
+Four tiers, plus overflow:
+
+- **Tier 1 — Phase** (concentration 1): the base element. Wood, Fire, Earth, Metal, Water.
+- **Tier 2 — Feeling** (concentration 2): the calm emotional register of the phase.
+- **Tier 3 — Surge** (concentration 3): the phase taking on too much of itself.
+- **Tier 4 — Storm** (concentration 4): the phase manifesting at full intensity, named for its most recognizable natural form.
+- **Overflow — Catastrophe** (concentration ≥5): self-overflow catastrophe, terminal, triggers the same lockout as a Storm × Storm catastrophe.
+
+### 3.0 Concentration-additive resolution
+
+The rule that makes every drop produce a visible, predictable change:
+
+> When two phase-pure entities of the same phase are combined, the result has concentration equal to the sum of the inputs. The named result is looked up by phase + tier in the tier table below. Concentrations of 5 or more produce the phase's self-overflow catastrophe.
+
+Worked examples for Wood:
+
+| Inputs | Sum | Result |
+|---|---|---|
+| Wood (1) + Wood (1) | 2 | Anger |
+| Wood (1) + Anger (2) | 3 | Overgrowth |
+| Anger (2) + Anger (2) | 4 | Wind |
+| Wood (1) + Overgrowth (3) | 4 | Wind |
+| Wood (1) + Wind (4) | 5 | Blight (overflow) |
+| Anger (2) + Wind (4) | 6 | Blight (overflow, capped) |
+| Wind (4) + Wind (4) | 8 | Blight (overflow, capped) |
+
+**Why additive over stepwise.** Identical inputs always produce identical outputs (predict-your-next-drag), and stronger inputs compound naturally ("if Anger is concentrated Wood, then two Angers should obviously concentrate further"). The session counter that previously implemented this is gone — state lives on the entity, not on the player's session.
+
+**Why the overflow catastrophe.** Going past Storm is the only Self resolution that did not exist in the earlier session-counter rule. It closes the design: every self-craft has a meaningful next step, including the most concentrated one. Self-overflow catastrophes are pure-actor-phase (`phase_weights = {phase: 1.0}`) and are therefore the most efficient single move for unbalancing the pentagram, paralleling but distinct from the existing 50/50 Storm × Storm catastrophes.
+
+For every phase, the resulting tier ladder follows the same structure (Feeling → Surge → Storm → Overflow):
 
 ### 3.1 Wood → Wood
 
-| Stage | Result | Emoji | Lore (for inspect panel) |
-|---|---|---|---|
-| 1 | **Anger** | 😠 | Wood's imbalanced emotion is irritability and anger; the linkage to the liver is named explicitly ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
-| 2 | **Overgrowth** | 🌳 | Wood's quality is growth and expansion ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)); excess is uncontrolled spread. |
-| 3 | **Wind** | 🌬️ | The classical "Liver Wind" pattern, surfaced under its natural-form name. Anchored in the liver–wood–anger linkage ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)) and the liver/gallbladder Yin–Yang pairing ([Healthline](https://www.healthline.com/health/mind-body/what-are-the-five-elements)). |
+| Concentration | Tier | Result | Emoji | Lore (for inspect panel) |
+|---|---|---|---|---|
+| 1 | Phase | **Wood** | 🌲 | Base phase. |
+| 2 | Feeling | **Anger** | 😠 | Wood's imbalanced emotion is irritability and anger; the linkage to the liver is named explicitly ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
+| 3 | Surge | **Overgrowth** | 🌳 | Wood's quality is growth and expansion ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)); excess is uncontrolled spread. |
+| 4 | Storm | **Wind** | 🌬️ | The classical "Liver Wind" pattern, surfaced under its natural-form name. Anchored in the liver–wood–anger linkage ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)) and the liver/gallbladder Yin–Yang pairing ([Healthline](https://www.healthline.com/health/mind-body/what-are-the-five-elements)). |
+| ≥5 | Overflow | **Blight** | 🥀 | Wood-overflow. Vegetative force at landscape scale, gone destructive — the liver-Wind pattern past Storm. Terminal; triggers workspace lockout. |
 
 ### 3.2 Fire → Fire
 
-| Stage | Result | Emoji | Lore (for inspect panel) |
-|---|---|---|---|
-| 1 | **Joy** | 😄 | Balanced Fire brings joy and enthusiasm ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
-| 2 | **Restlessness** | ⚡ | Excess Fire produces restlessness and emotional instability ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
-| 3 | **Heart** | ❤️ | The classical "Heart Heat" pattern, surfaced under its associated organ. Fire's Yin organ is the heart ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/), [Healthline](https://www.healthline.com/health/mind-body/what-are-the-five-elements)). |
+| Concentration | Tier | Result | Emoji | Lore (for inspect panel) |
+|---|---|---|---|---|
+| 1 | Phase | **Fire** | 🔥 | Base phase. |
+| 2 | Feeling | **Joy** | 😄 | Balanced Fire brings joy and enthusiasm ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
+| 3 | Surge | **Restlessness** | ⚡ | Excess Fire produces restlessness and emotional instability ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
+| 4 | Storm | **Heart** | ❤️ | The classical "Heart Heat" pattern, surfaced under its associated organ. Fire's Yin organ is the heart ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/), [Healthline](https://www.healthline.com/health/mind-body/what-are-the-five-elements)). |
+| ≥5 | Overflow | **Heatwave** | 🥵 | Fire-overflow. Sustained heat past Storm — air, ground, and sky all at temperature. Terminal; triggers workspace lockout. |
 
 ### 3.3 Earth → Earth
 
-| Stage | Result | Emoji | Lore (for inspect panel) |
-|---|---|---|---|
-| 1 | **Worry** | 😟 | Earth's imbalanced emotion is worry / overthinking ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
-| 2 | **Stagnation** | 🟫 | Earth governs digestion and energy distribution ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)); excess Earth means flow stops. |
-| 3 | **Mud** | 🟤 | The classical "Dampness" pattern of the spleen, surfaced under its natural-form name. Spleen/stomach are Earth's Yin–Yang organ pair ([Healthline](https://www.healthline.com/health/mind-body/what-are-the-five-elements)). |
+| Concentration | Tier | Result | Emoji | Lore (for inspect panel) |
+|---|---|---|---|---|
+| 1 | Phase | **Earth** | 🟫 | Base phase. |
+| 2 | Feeling | **Worry** | 😟 | Earth's imbalanced emotion is worry / overthinking ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
+| 3 | Surge | **Stagnation** | 🪨 | Earth governs digestion and energy distribution ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)); excess Earth means flow stops. |
+| 4 | Storm | **Mud** | 🟤 | The classical "Dampness" pattern of the spleen, surfaced under its natural-form name. Spleen/stomach are Earth's Yin–Yang organ pair ([Healthline](https://www.healthline.com/health/mind-body/what-are-the-five-elements)). |
+| ≥5 | Overflow | **Avalanche** | 🏔️ | Earth-overflow. Mass of earth in motion at landscape scale. Terminal; triggers workspace lockout. |
 
 ### 3.4 Metal → Metal
 
-| Stage | Result | Emoji | Lore (for inspect panel) |
-|---|---|---|---|
-| 1 | **Grief** | 😢 | Grief is Metal's emotion; difficulty releasing emotions affects the lungs ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
-| 2 | **Rigidity** | 🗿 | Metal's quality is structure and clarity ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)); excess is structure without flexibility. |
-| 3 | **Drought** | 🏜️ | The classical "Lung Dryness" pattern, surfaced under its natural-form name. Metal governs respiration; lung/large-intestine are its Yin–Yang pair ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/), [Healthline](https://www.healthline.com/health/mind-body/what-are-the-five-elements)). |
+| Concentration | Tier | Result | Emoji | Lore (for inspect panel) |
+|---|---|---|---|---|
+| 1 | Phase | **Metal** | ⚙️ | Base phase. |
+| 2 | Feeling | **Grief** | 😢 | Grief is Metal's emotion; difficulty releasing emotions affects the lungs ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
+| 3 | Surge | **Rigidity** | 🗿 | Metal's quality is structure and clarity ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)); excess is structure without flexibility. |
+| 4 | Storm | **Drought** | 🏜️ | The classical "Lung Dryness" pattern, surfaced under its natural-form name. Metal governs respiration; lung/large-intestine are its Yin–Yang pair ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/), [Healthline](https://www.healthline.com/health/mind-body/what-are-the-five-elements)). |
+| ≥5 | Overflow | **Wasteland** | 🦴 | Metal-overflow. The landscape Drought has left — mineral residue at scale. Terminal; triggers workspace lockout. |
 
 ### 3.5 Water → Water
 
-| Stage | Result | Emoji | Lore (for inspect panel) |
-|---|---|---|---|
-| 1 | **Fear** | 😨 | Fear / anxiety is Water's imbalanced emotion ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
-| 2 | **Flooding** | 🌊 | Water governs fluid balance ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)); excess is fluids out of balance. |
-| 3 | **Frost** | ❄️ | The classical "Kidney Cold" pattern, surfaced under its natural-form name. Kidney/bladder are Water's Yin–Yang pair ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/), [Healthline](https://www.healthline.com/health/mind-body/what-are-the-five-elements)). |
+| Concentration | Tier | Result | Emoji | Lore (for inspect panel) |
+|---|---|---|---|---|
+| 1 | Phase | **Water** | 💧 | Base phase. |
+| 2 | Feeling | **Fear** | 😨 | Fear / anxiety is Water's imbalanced emotion ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)). |
+| 3 | Surge | **Flooding** | 🌊 | Water governs fluid balance ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/)); excess is fluids out of balance. |
+| 4 | Storm | **Frost** | ❄️ | The classical "Kidney Cold" pattern, surfaced under its natural-form name. Kidney/bladder are Water's Yin–Yang pair ([Aetherium](https://aetheriumhealth.com/understanding-the-five-elements-in-chinese-medicine-a-guide-to-health-and-harmony/), [Healthline](https://www.healthline.com/health/mind-body/what-are-the-five-elements)). |
+| ≥5 | Overflow | **Maelstrom** | 🌀 | Water-overflow. Sustained inundation past Storm — sea overrunning land. Terminal; triggers workspace lockout. |
 
 ---
 

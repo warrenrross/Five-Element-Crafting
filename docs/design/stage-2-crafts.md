@@ -39,12 +39,13 @@ Inherited from the Medium scope:
 | §3 Sheng × Ke (cross) | 15 |
 | §4 Result-on-origin-phase (refined variants) | 10 |
 | §5 Storm × Storm (catastrophes) | 10 |
-| **Total stage-2** | **55** |
+| §5.5 Self-overflow catastrophes (added 2026-05-26) | 5 |
+| **Total stage-2** | **60** |
 | Stage-1 (phases + Sheng + Ke + Feelings + Surges + Storms + Insub) | 40 |
 | Phases (right-panel sources) | 5 |
-| **Grand total v1** | **95** |
+| **Grand total v1** | **100** |
 
-**Note on the count.** Earlier drafts of this doc gave the v1 total as 85, treating stage-1 as 30 entries. The actual stage-1 sum is 40 distinct results (5 Sheng + 5 Ke + 5 Feelings + 5 Surges + 5 Storms + 10 Insubordinate) plus the 5 phases, for **45 stage-1 entities**. The corrected grand total is **95**. The Medium-scope ceiling (65–85 entities) is therefore slightly exceeded — by 10 entities, all in the well-justified §3 cross-products and §5 catastrophes that we authored deliberately. The implementation absorbs this without trouble — the flat recipe file in `app/src/data/recipes.json` is still under 12 KB.
+**Note on the count.** Earlier drafts of this doc gave the v1 total as 85, treating stage-1 as 30 entries. The actual stage-1 sum is 40 distinct results (5 Sheng + 5 Ke + 5 Feelings + 5 Surges + 5 Storms + 10 Insubordinate) plus the 5 phases, for **45 stage-1 entities**. With the addition of the 5 self-overflow catastrophes in §5.5 (ratified 2026-05-26), the grand total is **100**. The Medium-scope ceiling (65–85 entities) is exceeded by 15 entities, all in the well-justified §3 cross-products, §5 catastrophes, and §5.5 self-overflows that were authored deliberately. The implementation absorbs this without trouble — the flat recipe file in `app/src/data/recipes.json` is still well under the size budget.
 
 ---
 
@@ -189,6 +190,30 @@ Order does not matter — catastrophes are pure intensity events. The recipe tab
 | 80 | Drought + Frost | **Tundra** | 🏔️ | Metal 0.5, Water 0.5 | Cold, dry, treeless land — the bottom of winter. Metal-Water excess as a recognized biome. (Ratified 2026-05-26: was "Hardpack" — replaced with the canonical biome name.) |
 
 **Section observations.** Every catastrophe is a 50/50 phase weight, because Storms are 100%-actor-phase and combining two of them produces a perfect cross. This means in Balance/Harmonize mode, a catastrophe contributes equally to both of its parent phases' excess readings — making catastrophes the most efficient way to *unbalance* the pentagram, and therefore the most expensive things to produce in puzzle mode.
+
+---
+
+## 5.5 Self-overflow catastrophes (added 2026-05-26)
+
+The concentration-additive Self rule introduced in [`game-interaction-grid.md`](./game-interaction-grid.md) §3 produces a **fifth tier** beyond Storm: when a self-craft sums to concentration 5 or more, the result overflows into a phase-pure catastrophe. Five entries, one per phase, ratified in [`naming-ratification-overflow.md`](./naming-ratification-overflow.md).
+
+These sit alongside the 10 Storm × Storm catastrophes in §5 but are **mathematically distinct**: where Storm × Storm catastrophes have 50/50 phase weights between two parents, self-overflow catastrophes are 100% the parent phase.
+
+| # | Phase chain | Trigger | Result | Emoji | `phase_weights` | Lore |
+|---|---|---|---|---|---|---|
+| 81 | Wood self-overflow | concentration ≥5 (e.g. Wood + Wind) | **Blight** | 🥀 | Wood 1.0 | Vegetative force at landscape scale, gone destructive. The liver-Wind pattern past Storm. Distinct from the Wood Storm **Wind** (concentration 4) and the insubordinate **Wildfire** (Fire → Wood). |
+| 82 | Fire self-overflow | concentration ≥5 (e.g. Fire + Heart) | **Heatwave** | 🥵 | Fire 1.0 | Sustained heat at world scale — air, ground, and sky all at temperature. Distinct from the existing five Fire-family entities (Bonfire, Inferno, Wildfire, Firestorm, Conflagration) by tense and scope: a Heatwave is *ambient and sustained*, not a single fire-event. |
+| 83 | Earth self-overflow | concentration ≥5 (e.g. Earth + Mud) | **Avalanche** | 🏔️ | Earth 1.0 | Mass of earth in motion at landscape scale. Distinct from the Storm × Storm catastrophes Eruption (vertical) and Permafrost (frozen) by axis: an Avalanche is *moving earth*. |
+| 84 | Metal self-overflow | concentration ≥5 (e.g. Metal + Drought) | **Wasteland** | 🦴 | Metal 1.0 | The landscape Drought has left — mineral residue at scale. Distinct from the Metal Storm **Drought** (the absence-of-water itself) by tense: a Wasteland is *what remains* after sustained Drought. |
+| 85 | Water self-overflow | concentration ≥5 (e.g. Water + Frost) | **Maelstrom** | 🌀 | Water 1.0 | Sustained inundation past Storm — sea overrunning land, with rotational force. Distinct from the existing Water Storm **Frost** (frozen) and the Surge **Flooding** (still rising) by motion: a Maelstrom *churns*. |
+
+**Resolution semantics.** Self-overflow is computed when, and only when, the actor and patient share the same phase and the summed concentration is ≥5. Any concentration of 5 or more (5, 6, 7, 8) collapses to the same overflow entity — there is no "super-overflow" tier. Wind (4) + Wind (4) = Blight, same as Wood (1) + Wind (4) = Blight.
+
+**Behavior in Explore.** Same as the Storm × Storm catastrophes — terminal, brief workspace lockout, dramatic visual cue. The discoveries panel records them like any other entity; producing one twice is allowed, since each production still triggers the lockout.
+
+**Behavior in Balance.** Same as the Storm × Storm catastrophes — producing one consumes the remaining budget down to 1 move minimum (per [`balance-mode.md`](./balance-mode.md) §10). Mathematically, however, self-overflows are *worse* than Storm × Storm catastrophes for the pentagram, because their 100%-actor-phase weight pushes a single phase further past its target than a 50/50 catastrophe would. A Maelstrom produced in a Water-deficient puzzle is *also* a recovery move; in a Water-excess puzzle it is an instant loss.
+
+**Authoring rule.** Self-overflow catastrophes are **not** part of the Storm × Storm grid — they belong to the self-craft chain, not the Storm-pair chain. The two systems are deliberately disjoint: Storm × Storm produces 10 mixed-phase catastrophes (50/50), self-overflow produces 5 phase-pure catastrophes (100/0). Together: 15 catastrophe entities at v1.
 
 ---
 
