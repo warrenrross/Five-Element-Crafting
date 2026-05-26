@@ -6,7 +6,7 @@ Game mechanics, interaction surface, and UI structure. Source of truth for what 
 
 - [`game-interaction-grid.md`](./game-interaction-grid.md) — **the playable surface.** Same 25 cells, but every result renamed to a simple, relatable noun (Wind, Heart, Mud, Bramble, Erosion, etc.) with the TCM-literal reading preserved in the lore column. **This is the doc the implementation should follow.**
 - [`interaction-grid.md`](./interaction-grid.md) — the literal-Wu-Xing version of the grid. Result names use clinical/pathology vocabulary (Liver Wind, Heart Heat, Dampness, Lung Dryness, Kidney Cold). Kept as the canonical reference for the inspect-panel "true reading," but **not** the surface labels.
-- *(planned)* `stage-2-crafts.md` — combining results with results.
+- [`stage-2-crafts.md`](./stage-2-crafts.md) — the 55 stage-2 entities for v1: 10 Sheng×Sheng, 10 Ke×Ke, 15 Sheng×Ke cross-products, 10 result-on-origin-phase refined variants, 10 Storm×Storm catastrophes. Plus Feeling-modifier resolution rules for stage-2 and the v1 recipe-table JSON shape. Brings v1 total to **85 entities**, at the top of the Medium-scope ceiling.
 - *(planned)* `balance-mode.md` — Balance and Harmonize puzzle generation.
 - *(planned)* `inspect-copy.md` — lore strings for each icon (for the future inspect panel).
 - *(planned)* `ui-layout.md` — right-panel blocks, left-panel discoveries, workspace center. **Deferred until v1 (which mirrors the open-source Infinite Craft clone) is playable** — see `open-questions.md` Q8–Q15.

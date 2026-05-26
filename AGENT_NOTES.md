@@ -29,9 +29,24 @@ Repo created from a brainstorming session. Decisions locked so far:
 3. Add a brief `docs/research/open-craft-reference.md` noting that Open Craft (Vue + Mistral, YouTube `aqrPOPq1kP0`) is **reference only**, not a code dependency — confirmed in the 2026-05-25 follow-up.
 4. Decide on the technology baseline (vanilla JS like Hand_AI, or a small framework). Default: vanilla JS, static hosting on GitHub Pages, matching the rest of the project family.
 5. Resolve the four open authoring questions at the end of `interaction-grid.md` (re-craftable Sheng/Ke results; counter persistence; insubordinate flavor copy; emoji audit).
-6. Begin `docs/design/stage-2-crafts.md` — combining results with results. Scope locked to **Medium** (~30–50 stage-2 cells + 10 catastrophes), postures **B + Apply + B-catastrophe + B-modifiers**. See `docs/design/open-questions.md` for the framing.
+6. ~~Begin `docs/design/stage-2-crafts.md` — combining results with results.~~ Done 2026-05-25. 55 stage-2 entities authored; v1 grand total 85 entities. Tail: naming pass on catastrophes and mixed bridges; explicit nulls list; phase-weight tuning post-Balance-mode.
 7. Review `docs/design/open-questions.md` when ready — Q6 (stage-2 failure state) is the only un-locked stage-2 question; everything else either has a Medium-version answer or is explicitly UI-deferred.
 8. ~~Review and ratify `docs/design/decisions-for-richest-play.md`.~~ Answered all of `open-questions.md` against the predict-your-next-drag principle. Stage-2 authoring is now unblocked.
+
+## 2026-05-25 (latest+2) — Stage-2 authored
+
+Added `docs/design/stage-2-crafts.md`. Authored all 55 stage-2 entities:
+
+- **§1 Sheng × Sheng (10)** — organic, additive substances. Hearth, Charcoal, Sap, Grove, Slag, Lye, Loam, Vein, Root-Ore, Bud.
+- **§2 Ke × Ke (10)** — human-made constructions. Levee, Marsh, Charwood, Stump, Reservoir, Furnace, Wedge, Quench-Bath, Whetstone, Anvil.
+- **§3 Sheng × Ke cross (15)** — the thematically richest layer. Bellows, Mortar, Hilt, Spring, Canopy, Tinder, Brick, Bloom, Ingot, Plank, Inlay, Rust-Ore, Pyre, Spring-Well, Frost-Edge. The 10 unauthored ordered pairs are deliberate nulls.
+- **§4 Result-on-origin-phase refined variants (10)** — highest-purity entities outside phases. Bonfire, Topsoil, Bullion, Spring-Water, Orchard (Sheng-refined); Heartwood, Bedrock, Monsoon, Inferno, Whetted-Steel (Ke-refined).
+- **§5 Storm × Storm catastrophes (10)** — 50/50 phase-weight terminal events with brief workspace lockout. Firestorm, Sandstorm, Dustbowl, Blizzard, Eruption, Wildstorm, Steam-Storm, Cracked-Earth, Permafrost, Hardpack.
+- **§6 Feeling-modifier resolution** — 5 bias rules cover all 250 (50 cells × 5 Feelings) modified-craft cases without expanding the entity count. Eight "wastes silently" edge cases enumerated.
+- **§7 `phase_weights` distribution** across all 85 v1 entities tabulated.
+- **§8 Recipe-table JSON shape** sketched. Target: single flat file under 50 KB.
+
+Grand total v1: **85 entities** — right at the top of the 65–85 Medium ceiling. Implementation is now spec-complete for the recipe engine. Outstanding tail items: final naming pass on §5 catastrophes and §3.3 mixed bridges; explicit nulls enumeration in §3; phase-weight tuning once Balance/Harmonize mode exists.
 
 ## 2026-05-25 (latest+1) — Decisions-for-richest-play pass
 
