@@ -4,7 +4,11 @@ Game mechanics, interaction surface, and UI structure. Source of truth for what 
 
 ## Documents
 
-- (none yet) — interaction grid, self-on-self table, mode specs, and UI layout to be filled in from session notes.
+- [`interaction-grid.md`](./interaction-grid.md) — the full 25-cell `(actor, patient)` surface: 5 Sheng + 5 Ke + 5 Self (three-stage reveal) + 10 Insubordinate. Every result authored and cited to the Wu Xing source material.
+- *(planned)* `stage-2-crafts.md` — combining results with results.
+- *(planned)* `balance-mode.md` — Balance and Harmonize puzzle generation.
+- *(planned)* `inspect-copy.md` — lore strings for each icon (for the future inspect panel).
+- *(planned)* `ui-layout.md` — right-panel blocks, left-panel discoveries, workspace center.
 
 ## Related
 

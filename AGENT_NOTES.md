@@ -24,7 +24,16 @@ Repo created from a brainstorming session. Decisions locked so far:
 
 ## What to do next session
 
-1. Stand up the 25-cell interaction table in `docs/design/interaction-grid.md`, with each cell's authored result + correspondence citation.
-2. Sketch the self-on-self three-stage table per element.
-3. Pull the open-source Infinite Craft clone reference into `docs/research/` and note exactly which files inform our scaffold.
+1. ~~Stand up the 25-cell interaction table in `docs/design/interaction-grid.md`.~~ Done 2026-05-25.
+2. ~~Sketch the self-on-self three-stage table per element.~~ Done — folded into `interaction-grid.md` §3.
+3. Add a brief `docs/research/open-craft-reference.md` noting that Open Craft (Vue + Mistral, YouTube `aqrPOPq1kP0`) is **reference only**, not a code dependency — confirmed in the 2026-05-25 follow-up.
 4. Decide on the technology baseline (vanilla JS like Hand_AI, or a small framework). Default: vanilla JS, static hosting on GitHub Pages, matching the rest of the project family.
+5. Resolve the four open authoring questions at the end of `interaction-grid.md` (re-craftable Sheng/Ke results; counter persistence; insubordinate flavor copy; emoji audit).
+6. Begin `docs/design/stage-2-crafts.md` — combining results with results.
+
+## 2026-05-25 (later) — Interaction grid authored
+
+- Added `docs/design/interaction-grid.md` with all 25 cells: 5 Sheng, 5 Ke, 5 Self (three-stage), 10 Insubordinate.
+- 20 distinct result names cover the 25 cells — the 10 insubordinate cells deliberately collide with the 5 Stage-3 self-craft pathologies, per the brainstorm decision that an insubordinate pair produces the actor's pathology.
+- Confirmed Open Craft (YouTube `aqrPOPq1kP0`) is reference only, not a scaffold dependency. v1 will be built from scratch.
+- Stage-2 crafting (results combined with results), inspect copy, UI layout, and Balance/Harmonize puzzle generation are all deferred to their own docs in `docs/design/`.
