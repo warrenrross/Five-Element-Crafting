@@ -33,7 +33,25 @@ Repo created from a brainstorming session. Decisions locked so far:
 7. Review `docs/design/open-questions.md` when ready — Q6 (stage-2 failure state) is the only un-locked stage-2 question; everything else either has a Medium-version answer or is explicitly UI-deferred.
 8. ~~Review and ratify `docs/design/decisions-for-richest-play.md`.~~ Answered all of `open-questions.md` against the predict-your-next-drag principle. Stage-2 authoring is now unblocked.
 9. ~~Research prior art for Wu Xing puzzle mechanics.~~ Done 2026-05-26. See `docs/research/wu-xing-puzzle-prior-art.md`.
-10. Author `docs/design/balance-mode.md` using the prior-art report §14 recommendations as the baseline.
+10. ~~Author `docs/design/balance-mode.md` using the prior-art report §14 recommendations as the baseline.~~ Done 2026-05-26.
+11. Naming-ratification pass on stage-2 catastrophes (§5 of `stage-2-crafts.md`) and mixed bridges (§3.3).
+12. Begin v1 implementation scaffold — vanilla JS, static-hosted, mirroring the Open Craft (Vue + Mistral, YouTube `aqrPOPq1kP0`) drag-and-drop surface. The recipe engine consumes the 85-entity recipe table from `stage-2-crafts.md` §8.
+13. Draft `docs/design/inspect-copy.md` (lore strings per icon) and `docs/design/ui-layout.md` (right/left/workspace panels) once the v1 clone is playable enough to compare against.
+
+## 2026-05-26 (latest) — Balance and Harmonize mode authored
+
+Added `docs/design/balance-mode.md` (~390 lines). The doc opens with the user-supplied frame — Tigris & Euphrates lowest-score-wins, Smith et al. backward-walk PCG, Gloomhaven Infuse/Consume vocabulary, Gogyo Trick four-outcome validation — then carries the CPS Construct/Procedure/Script framework only into §15 as a tiebreaker, per the user's instruction. Highlights:
+
+- **Win condition** — `score = min(phase_weights)`, win when `score ≥ 0.2 − ε` (ε = 0.03 default). Lowest-element-wins maps Tigris & Euphrates' four-color floor directly onto the five-phase floor without remixing the metaphor.
+- **Move semantics** — each of the four resolution types gets a Gloomhaven-style verb: Sheng = **Infuse** (+Δ patient), Ke = **Consume** (−Δ patient, +δ actor), Self = **Concentrate** (+Δ_self actor), Insub = **Disturb** (pathology token, no phase shift). Defaults: Δ = 0.05, δ = 0.02, Δ_self = 0.08.
+- **Difficulty tiers** — Gentle (K=8, ε=0.05, 15+ solution paths), Steady (K=6, ε=0.03, 5–10 paths), Sharp (K=5, ε=0.02, 1–3 paths). Volden et al. genetic-PCG run = 24 generations target.
+- **Pathology token cap M = 3.** Insubordinate moves are sometimes optimal (free actor boost-by-omission), but the third Disturb token loses the puzzle. Mirrors Gogyo Trick's 侮 outcome.
+- **PCG pipeline** — Smith et al. backward-chain from a balanced terminal state → solvability check → Volden et al. genetic calibration to the target tier → Katz et al. statistical distribution control across a session.
+- **Catastrophes integrate cleanly.** Storm × Storm results are forbidden moves in Balance mode (the brief workspace lockout that Explore mode uses doesn't make sense here); attempting one consumes the move and adds a Disturb token.
+- **§15 CPS alignment** — **Strong**: phases + rules = Constructs, the puzzle loop = Procedure. **Speculative**: named opening lines as Scripts (flagged for playtest, not v1). **Weak**: left as notes only. §15.4 surfaces a UI requirement the framework made obvious — the four move types need visually distinct icons or animations so the player can read "what kind of move did I just make?" without inspecting.
+- **Failure surface validated against Gogyo Trick's four outcomes** — successful Sheng, successful Ke, Self-overload, and Insubordinate-pathology each have a distinct mode-end state in our model. The full mapping is in §9.
+
+Open tail items (§17): the move-budget K curve across a session, whether Feelings carry over from Explore into Balance, and whether the Sharp tier should ever require an Insubordinate move (currently no — Disturb is always sub-optimal).
 
 ## 2026-05-26 — Wu Xing puzzle prior-art research landed
 
