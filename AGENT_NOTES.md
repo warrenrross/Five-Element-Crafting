@@ -31,6 +31,13 @@ Repo created from a brainstorming session. Decisions locked so far:
 5. Resolve the four open authoring questions at the end of `interaction-grid.md` (re-craftable Sheng/Ke results; counter persistence; insubordinate flavor copy; emoji audit).
 6. Begin `docs/design/stage-2-crafts.md` — combining results with results.
 
+## 2026-05-25 (later still) — Player-surface rename pass
+
+- Added `docs/design/game-interaction-grid.md` as the **playable** version of the grid. Same 25 cells, but every result renamed to a simple noun a player can read at icon size (Wind, Heart, Mud, Drought, Frost for the five Stage-3 entries; Bramble, Gale, Wildfire, Steam, Smoke, Quicksand, Rust, Blade, Erosion, Tide for the 10 insubordinate cells).
+- The literal-Wu-Xing grid (`interaction-grid.md`) is retained as the canonical reference for inspect-panel "true reading" copy.
+- Trade-off accepted: surface grid now has 30 distinct result names (vs. 20 in the literal grid), because the previous trick of collapsing 10 insubordinate cells into 5 pathology names was unreadable at icon size. Discoveries panel now resolves cleanly — every cell has its own addressable entity.
+- `docs/design/README.md` updated to flag `game-interaction-grid.md` as the implementation source of truth.
+
 ## 2026-05-25 (later) — Interaction grid authored
 
 - Added `docs/design/interaction-grid.md` with all 25 cells: 5 Sheng, 5 Ke, 5 Self (three-stage), 10 Insubordinate.
