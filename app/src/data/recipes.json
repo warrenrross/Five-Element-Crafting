@@ -1,0 +1,662 @@
+[
+  {
+    "actor": "wood",
+    "patient": "fire",
+    "result": "kindling",
+    "move_type": "sheng"
+  },
+  {
+    "actor": "fire",
+    "patient": "earth",
+    "result": "ash",
+    "move_type": "sheng"
+  },
+  {
+    "actor": "earth",
+    "patient": "metal",
+    "result": "ore",
+    "move_type": "sheng"
+  },
+  {
+    "actor": "metal",
+    "patient": "water",
+    "result": "dew",
+    "move_type": "sheng"
+  },
+  {
+    "actor": "water",
+    "patient": "wood",
+    "result": "sapling",
+    "move_type": "sheng"
+  },
+  {
+    "actor": "wood",
+    "patient": "earth",
+    "result": "roots",
+    "move_type": "ke"
+  },
+  {
+    "actor": "earth",
+    "patient": "water",
+    "result": "dam",
+    "move_type": "ke"
+  },
+  {
+    "actor": "water",
+    "patient": "fire",
+    "result": "rain",
+    "move_type": "ke"
+  },
+  {
+    "actor": "fire",
+    "patient": "metal",
+    "result": "forge",
+    "move_type": "ke"
+  },
+  {
+    "actor": "metal",
+    "patient": "wood",
+    "result": "axe",
+    "move_type": "ke"
+  },
+  {
+    "actor": "wood",
+    "patient": "wood",
+    "result": "anger",
+    "move_type": "self"
+  },
+  {
+    "actor": "fire",
+    "patient": "fire",
+    "result": "joy",
+    "move_type": "self"
+  },
+  {
+    "actor": "earth",
+    "patient": "earth",
+    "result": "worry",
+    "move_type": "self"
+  },
+  {
+    "actor": "metal",
+    "patient": "metal",
+    "result": "grief",
+    "move_type": "self"
+  },
+  {
+    "actor": "water",
+    "patient": "water",
+    "result": "fear",
+    "move_type": "self"
+  },
+  {
+    "actor": "wood",
+    "patient": "metal",
+    "result": "bramble",
+    "move_type": "insub"
+  },
+  {
+    "actor": "wood",
+    "patient": "water",
+    "result": "gale",
+    "move_type": "insub"
+  },
+  {
+    "actor": "fire",
+    "patient": "wood",
+    "result": "wildfire",
+    "move_type": "insub"
+  },
+  {
+    "actor": "fire",
+    "patient": "water",
+    "result": "steam",
+    "move_type": "insub"
+  },
+  {
+    "actor": "earth",
+    "patient": "fire",
+    "result": "smoke",
+    "move_type": "insub"
+  },
+  {
+    "actor": "earth",
+    "patient": "wood",
+    "result": "quicksand",
+    "move_type": "insub"
+  },
+  {
+    "actor": "metal",
+    "patient": "earth",
+    "result": "rust",
+    "move_type": "insub"
+  },
+  {
+    "actor": "metal",
+    "patient": "fire",
+    "result": "blade",
+    "move_type": "insub"
+  },
+  {
+    "actor": "water",
+    "patient": "earth",
+    "result": "erosion",
+    "move_type": "insub"
+  },
+  {
+    "actor": "water",
+    "patient": "metal",
+    "result": "tide",
+    "move_type": "insub"
+  },
+  {
+    "actor": "kindling",
+    "patient": "ash",
+    "result": "hearth",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ash",
+    "patient": "kindling",
+    "result": "hearth",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "kindling",
+    "patient": "ore",
+    "result": "charcoal",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ore",
+    "patient": "kindling",
+    "result": "charcoal",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "kindling",
+    "patient": "dew",
+    "result": "sap",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dew",
+    "patient": "kindling",
+    "result": "sap",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "kindling",
+    "patient": "sapling",
+    "result": "grove",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "sapling",
+    "patient": "kindling",
+    "result": "grove",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ash",
+    "patient": "ore",
+    "result": "slag",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ore",
+    "patient": "ash",
+    "result": "slag",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ash",
+    "patient": "dew",
+    "result": "lye",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dew",
+    "patient": "ash",
+    "result": "lye",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ash",
+    "patient": "sapling",
+    "result": "loam",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "sapling",
+    "patient": "ash",
+    "result": "loam",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ore",
+    "patient": "dew",
+    "result": "vein",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dew",
+    "patient": "ore",
+    "result": "vein",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ore",
+    "patient": "sapling",
+    "result": "root_ore",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "sapling",
+    "patient": "ore",
+    "result": "root_ore",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dew",
+    "patient": "sapling",
+    "result": "bud",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "sapling",
+    "patient": "dew",
+    "result": "bud",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "roots",
+    "patient": "dam",
+    "result": "levee",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dam",
+    "patient": "roots",
+    "result": "levee",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "roots",
+    "patient": "rain",
+    "result": "marsh",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "rain",
+    "patient": "roots",
+    "result": "marsh",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "roots",
+    "patient": "forge",
+    "result": "charwood",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "forge",
+    "patient": "roots",
+    "result": "charwood",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "roots",
+    "patient": "axe",
+    "result": "stump",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "axe",
+    "patient": "roots",
+    "result": "stump",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dam",
+    "patient": "rain",
+    "result": "reservoir",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "rain",
+    "patient": "dam",
+    "result": "reservoir",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dam",
+    "patient": "forge",
+    "result": "furnace",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "forge",
+    "patient": "dam",
+    "result": "furnace",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dam",
+    "patient": "axe",
+    "result": "wedge",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "axe",
+    "patient": "dam",
+    "result": "wedge",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "rain",
+    "patient": "forge",
+    "result": "quench_bath",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "forge",
+    "patient": "rain",
+    "result": "quench_bath",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "rain",
+    "patient": "axe",
+    "result": "whetstone",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "axe",
+    "patient": "rain",
+    "result": "whetstone",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "forge",
+    "patient": "axe",
+    "result": "anvil",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "axe",
+    "patient": "forge",
+    "result": "anvil",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "kindling",
+    "patient": "forge",
+    "result": "bellows",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ash",
+    "patient": "dam",
+    "result": "mortar",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ore",
+    "patient": "axe",
+    "result": "hilt",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dew",
+    "patient": "roots",
+    "result": "spring",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "sapling",
+    "patient": "rain",
+    "result": "canopy",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "roots",
+    "patient": "kindling",
+    "result": "tinder",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dam",
+    "patient": "ash",
+    "result": "brick",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "rain",
+    "patient": "sapling",
+    "result": "bloom",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "forge",
+    "patient": "ore",
+    "result": "ingot",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "axe",
+    "patient": "sapling",
+    "result": "plank",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "forge",
+    "patient": "sapling",
+    "result": "brand",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "rain",
+    "patient": "ore",
+    "result": "patina",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dam",
+    "patient": "kindling",
+    "result": "pyre",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "roots",
+    "patient": "dew",
+    "result": "wellspring",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "axe",
+    "patient": "dew",
+    "result": "rime",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "kindling",
+    "patient": "fire",
+    "result": "bonfire",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ash",
+    "patient": "earth",
+    "result": "topsoil",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "ore",
+    "patient": "metal",
+    "result": "bullion",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dew",
+    "patient": "water",
+    "result": "spring_water",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "sapling",
+    "patient": "wood",
+    "result": "orchard",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "roots",
+    "patient": "wood",
+    "result": "heartwood",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "dam",
+    "patient": "earth",
+    "result": "bedrock",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "rain",
+    "patient": "water",
+    "result": "monsoon",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "forge",
+    "patient": "fire",
+    "result": "inferno",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "axe",
+    "patient": "metal",
+    "result": "whetted_steel",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "wind",
+    "patient": "heart",
+    "result": "firestorm",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "heart",
+    "patient": "wind",
+    "result": "firestorm",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "wind",
+    "patient": "mud",
+    "result": "sandstorm",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "mud",
+    "patient": "wind",
+    "result": "sandstorm",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "wind",
+    "patient": "drought",
+    "result": "dustbowl",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "drought",
+    "patient": "wind",
+    "result": "dustbowl",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "wind",
+    "patient": "frost",
+    "result": "blizzard",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "frost",
+    "patient": "wind",
+    "result": "blizzard",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "heart",
+    "patient": "mud",
+    "result": "eruption",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "mud",
+    "patient": "heart",
+    "result": "eruption",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "heart",
+    "patient": "drought",
+    "result": "conflagration",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "drought",
+    "patient": "heart",
+    "result": "conflagration",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "heart",
+    "patient": "frost",
+    "result": "geyser",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "frost",
+    "patient": "heart",
+    "result": "geyser",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "mud",
+    "patient": "drought",
+    "result": "fissure",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "drought",
+    "patient": "mud",
+    "result": "fissure",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "mud",
+    "patient": "frost",
+    "result": "permafrost",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "frost",
+    "patient": "mud",
+    "result": "permafrost",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "drought",
+    "patient": "frost",
+    "result": "tundra",
+    "move_type": "stage2"
+  },
+  {
+    "actor": "frost",
+    "patient": "drought",
+    "result": "tundra",
+    "move_type": "stage2"
+  }
+]

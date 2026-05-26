@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Five-Element-Crafting</title>
+    <link rel="stylesheet" href="src/styles/main.css" />
+  </head>
+  <body>
+    <div id="app">
+      <aside id="discoveries-panel" class="panel panel-left">
+        <header class="panel-header">
+          <h2>Discoveries</h2>
+          <div id="discovery-counter" class="counter">0 / 95</div>
+        </header>
+        <div id="discoveries-groups"></div>
+      </aside>
+
+      <main id="workspace" class="workspace">
+        <div id="pentagram-background" class="pentagram hidden"></div>
+        <div id="workspace-entities"></div>
+        <div id="craft-feedback"></div>
+        <div id="catastrophe-overlay" class="hidden"></div>
+        <div id="nudge"></div>
+        <button id="clear-btn" class="workspace-button" type="button">Clear</button>
+      </main>
+
+      <aside id="blocks-panel" class="panel panel-right">
+        <header class="panel-header">
+          <h2>Phases</h2>
+        </header>
+        <div id="phase-tiles"></div>
+      </aside>
+    </div>
+
+    <div id="inspect-drawer" class="drawer hidden" aria-hidden="true">
+      <button id="inspect-close" class="drawer-close" type="button" aria-label="Close inspect panel">&times;</button>
+      <div id="inspect-content"></div>
+    </div>
+
+    <div id="clear-modal" class="modal hidden" role="dialog" aria-labelledby="clear-modal-title">
+      <div class="modal-body">
+        <h3 id="clear-modal-title">Clear workspace?</h3>
+        <p>This removes every entity from the workspace. Discoveries stay.</p>
+        <div class="modal-actions">
+          <button id="clear-confirm" type="button">Clear</button>
+          <button id="clear-cancel" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <footer id="app-footer">
+      <a href="https://github.com/warrenrross/Five-Element-Crafting" target="_blank" rel="noopener">Five-Element-Crafting</a>
+      <span class="footer-sep">&middot;</span>
+      <span>v1 scaffold &mdash; Explore mode</span>
+    </footer>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

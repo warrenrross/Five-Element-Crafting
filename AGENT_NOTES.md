@@ -2,6 +2,29 @@
 
 Session-to-session handoff notes for Five-Element-Crafting. Matches the convention used in [Hand_AI](https://github.com/warrenrross/Hand_AI) and [gesture-detect-research](https://github.com/warrenrross/gesture-detect-research).
 
+## 2026-05-26 (latest) — v1 scaffold, naming ratified, inspect/layout docs landed
+
+Three shipped this session:
+
+1. **Naming ratification** — `docs/design/naming-ratification.md` documents 8 renames against the predict-your-next-drag principle. Mixed bridges (§3.3): Inlay→Brand, Rust-Ore→Patina, Spring-Well→Wellspring, Frost-Edge→Rime (Pyre kept). Catastrophes (§5): Wildstorm→Conflagration, Steam-Storm→Geyser, Cracked-Earth→Fissure, Hardpack→Tundra (Firestorm, Sandstorm, Dustbowl, Blizzard, Eruption, Permafrost kept). Renames applied inline to `docs/design/stage-2-crafts.md`. Entity count corrected from 85 to **95** (5 phases + 5 Sheng + 5 Ke + 10 Insub + 5 Feeling + 5 Surge + 5 Storm + 55 stage-2).
+2. **Design docs** — `docs/design/inspect-copy.md` (598 lines, all 95 entities with Surface/Reading/True-name structure, citations to Aetherium and Healthline) and `docs/design/ui-layout.md` (258 lines, three-panel spec with move-type animation vocabulary, free-placement workspace, snap-back nudge, catastrophe lockout, mobile breakpoint at 600px).
+3. **v1 scaffold** — `app/` directory, vanilla JS, no build step. Serves over `python3 -m http.server`. Implements the four move types with their animation cues (Infuse/Consume/Concentrate/Disturb + stage-2 rotate), self-stage progression, discoveries ledger in localStorage, inspect drawer with phase-weight chips and "Made by" recipes, Clear + confirm modal, catastrophe lockout overlay. Three-panel layout matches `ui-layout.md`. JSON data files (95 entities, 110 recipes, self-progression, 10 catastrophes) generated from `stage-2-crafts.md` §8 by a build script kept in `/tmp/build_data.py` (not committed; re-run only when the entity table changes).
+
+**Move-type animation vocabulary** is now locked in three places: `balance-mode.md` §15.4, `ui-layout.md` §3.3, and the CSS `.cue-*` classes in `app/src/styles/main.css`. Any new UI surface should reuse the same halo colors and motion verbs:
+- Sheng = **Infuse**: green halo + pulse-up
+- Ke = **Consume**: red halo + press-down
+- Self = **Concentrate**: gold halo + brightness hold
+- Insub = **Disturb**: purple halo + horizontal shake
+- Stage-2 = neutral indigo + rotate
+
+Open items for the next session:
+- Balance mode is fully spec'd in `docs/design/balance-mode.md` but not implemented in the scaffold. The workspace already has a hidden `#pentagram-background` placeholder to extend into.
+- Reading-lore (the long-form, citation-rich text from `inspect-copy.md`) is intentionally **not** in the JSON yet — v1 inspect shows only Surface + True-name + phase weights + recipes. If we want Reading-lore in-app, add a `reading_lore` field to entities and load `inspect-copy.md` excerpts.
+- Mobile testing has not been performed. CSS includes a 600px breakpoint but it has not been exercised.
+- The discoveries panel currently treats phases as auto-discovered on first load so the cells aren't locked at start. Consider whether that's the right default once Balance mode lands.
+- Deploy: GitHub Pages would work — the repo is public and the app is fully static. Set Pages to serve from `/app/` on main.
+
+
 ## 2026-05-25 — Repo bootstrap
 
 Repo created from a brainstorming session. Decisions locked so far:

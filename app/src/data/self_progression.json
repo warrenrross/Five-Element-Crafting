@@ -1,0 +1,27 @@
+{
+  "wood": [
+    "anger",
+    "overgrowth",
+    "wind"
+  ],
+  "fire": [
+    "joy",
+    "restlessness",
+    "heart"
+  ],
+  "earth": [
+    "worry",
+    "stagnation",
+    "mud"
+  ],
+  "metal": [
+    "grief",
+    "rigidity",
+    "drought"
+  ],
+  "water": [
+    "fear",
+    "flooding",
+    "frost"
+  ]
+}

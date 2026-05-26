@@ -40,10 +40,11 @@ Inherited from the Medium scope:
 | §4 Result-on-origin-phase (refined variants) | 10 |
 | §5 Storm × Storm (catastrophes) | 10 |
 | **Total stage-2** | **55** |
-| Stage-1 (base, already authored) | 30 |
-| **Grand total v1** | **85** |
+| Stage-1 (phases + Sheng + Ke + Feelings + Surges + Storms + Insub) | 40 |
+| Phases (right-panel sources) | 5 |
+| **Grand total v1** | **95** |
 
-Sits right at the top of the 65–85 Medium ceiling. Comfortable; not bloated.
+**Note on the count.** Earlier drafts of this doc gave the v1 total as 85, treating stage-1 as 30 entries. The actual stage-1 sum is 40 distinct results (5 Sheng + 5 Ke + 5 Feelings + 5 Surges + 5 Storms + 10 Insubordinate) plus the 5 phases, for **45 stage-1 entities**. The corrected grand total is **95**. The Medium-scope ceiling (65–85 entities) is therefore slightly exceeded — by 10 entities, all in the well-justified §3 cross-products and §5 catastrophes that we authored deliberately. The implementation absorbs this without trouble — the flat recipe file in `app/src/data/recipes.json` is still under 12 KB.
 
 ---
 

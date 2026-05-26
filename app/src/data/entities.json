@@ -1,0 +1,1427 @@
+[
+  {
+    "id": "wood",
+    "name": "Wood",
+    "emoji": "🌳",
+    "tier": "phase",
+    "phase_weights": {
+      "wood": 1.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "The growing principle — sap rising, roots spreading, branches reaching.",
+    "true_name": "Wood (木)"
+  },
+  {
+    "id": "fire",
+    "name": "Fire",
+    "emoji": "🔥",
+    "tier": "phase",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 1.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "The transforming principle — light, heat, the act of becoming-something-else.",
+    "true_name": "Fire (火)"
+  },
+  {
+    "id": "earth",
+    "name": "Earth",
+    "emoji": "🟫",
+    "tier": "phase",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 1.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "The supporting principle — ground, foundation, the place everything rests on.",
+    "true_name": "Earth (土)"
+  },
+  {
+    "id": "metal",
+    "name": "Metal",
+    "emoji": "⚙️",
+    "tier": "phase",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 1.0,
+      "water": 0.0
+    },
+    "surface_lore": "The structuring principle — edge, clarity, the line that separates one thing from another.",
+    "true_name": "Metal (金)"
+  },
+  {
+    "id": "water",
+    "name": "Water",
+    "emoji": "💧",
+    "tier": "phase",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 1.0
+    },
+    "surface_lore": "The yielding principle — flow, depth, the thing that finds its level.",
+    "true_name": "Water (水)"
+  },
+  {
+    "id": "kindling",
+    "name": "Kindling",
+    "emoji": "🔥",
+    "tier": "sheng",
+    "phase_weights": {
+      "wood": 0.5,
+      "fire": 0.5,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Dry wood ready to catch fire.",
+    "true_name": null
+  },
+  {
+    "id": "ash",
+    "name": "Ash",
+    "emoji": "🌋",
+    "tier": "sheng",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.5,
+      "earth": 0.5,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "What remains after the fire burns down.",
+    "true_name": null
+  },
+  {
+    "id": "ore",
+    "name": "Ore",
+    "emoji": "⛏️",
+    "tier": "sheng",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.5,
+      "metal": 0.5,
+      "water": 0.0
+    },
+    "surface_lore": "Raw, unworked metal still half in the ground.",
+    "true_name": null
+  },
+  {
+    "id": "dew",
+    "name": "Dew",
+    "emoji": "💧",
+    "tier": "sheng",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.5,
+      "water": 0.5
+    },
+    "surface_lore": "Cool condensate gathered on a cold surface.",
+    "true_name": null
+  },
+  {
+    "id": "sapling",
+    "name": "Sapling",
+    "emoji": "🌱",
+    "tier": "sheng",
+    "phase_weights": {
+      "wood": 0.5,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.5
+    },
+    "surface_lore": "A young tree breaking ground.",
+    "true_name": null
+  },
+  {
+    "id": "roots",
+    "name": "Roots",
+    "emoji": "🌿",
+    "tier": "ke",
+    "phase_weights": {
+      "wood": 0.7,
+      "fire": 0.0,
+      "earth": 0.3,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Tendrils binding and breaking through soil.",
+    "true_name": null
+  },
+  {
+    "id": "dam",
+    "name": "Dam",
+    "emoji": "🪨",
+    "tier": "ke",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.7,
+      "metal": 0.0,
+      "water": 0.3
+    },
+    "surface_lore": "An earthen wall holding back the flow.",
+    "true_name": null
+  },
+  {
+    "id": "rain",
+    "name": "Rain",
+    "emoji": "🌧️",
+    "tier": "ke",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.3,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.7
+    },
+    "surface_lore": "Falling water that puts out the fire.",
+    "true_name": null
+  },
+  {
+    "id": "forge",
+    "name": "Forge",
+    "emoji": "🔨",
+    "tier": "ke",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.7,
+      "earth": 0.0,
+      "metal": 0.3,
+      "water": 0.0
+    },
+    "surface_lore": "Heat softening metal until it can be shaped.",
+    "true_name": null
+  },
+  {
+    "id": "axe",
+    "name": "Axe",
+    "emoji": "🪓",
+    "tier": "ke",
+    "phase_weights": {
+      "wood": 0.3,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.7,
+      "water": 0.0
+    },
+    "surface_lore": "A blade that cuts the tree down.",
+    "true_name": null
+  },
+  {
+    "id": "bramble",
+    "name": "Bramble",
+    "emoji": "🌵",
+    "tier": "insub",
+    "phase_weights": {
+      "wood": 0.9,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.1,
+      "water": 0.0
+    },
+    "surface_lore": "Thorny overgrowth pushing back against the blade.",
+    "true_name": "Wood insulting Metal (木侮金)"
+  },
+  {
+    "id": "gale",
+    "name": "Gale",
+    "emoji": "💨",
+    "tier": "insub",
+    "phase_weights": {
+      "wood": 0.9,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.1
+    },
+    "surface_lore": "A strong wind from a tree that was supposed to be still.",
+    "true_name": "Wood counter-acting Water (木侮水)"
+  },
+  {
+    "id": "wildfire",
+    "name": "Wildfire",
+    "emoji": "🔥",
+    "tier": "insub",
+    "phase_weights": {
+      "wood": 0.1,
+      "fire": 0.9,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Fire turning on the wood that fed it.",
+    "true_name": "Fire counter-acting Wood (火侮木)"
+  },
+  {
+    "id": "steam",
+    "name": "Steam",
+    "emoji": "♨️",
+    "tier": "insub",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.9,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.1
+    },
+    "surface_lore": "Heat rising as vapor where it meets cold.",
+    "true_name": "Fire insulting Water (火侮水)"
+  },
+  {
+    "id": "smoke",
+    "name": "Smoke",
+    "emoji": "🌫️",
+    "tier": "insub",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.1,
+      "earth": 0.9,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "A choking cloud from a hearth that won't draw.",
+    "true_name": "Earth counter-acting Fire (土侮火)"
+  },
+  {
+    "id": "quicksand",
+    "name": "Quicksand",
+    "emoji": "🟫",
+    "tier": "insub",
+    "phase_weights": {
+      "wood": 0.1,
+      "fire": 0.0,
+      "earth": 0.9,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Ground that refuses to hold what stands on it.",
+    "true_name": "Earth insulting Wood (土侮木)"
+  },
+  {
+    "id": "rust",
+    "name": "Rust",
+    "emoji": "🟧",
+    "tier": "insub",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.1,
+      "metal": 0.9,
+      "water": 0.0
+    },
+    "surface_lore": "Metal degrading back toward the ground that bore it.",
+    "true_name": "Metal counter-acting Earth (金侮土)"
+  },
+  {
+    "id": "blade",
+    "name": "Blade",
+    "emoji": "🗡️",
+    "tier": "insub",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.1,
+      "earth": 0.0,
+      "metal": 0.9,
+      "water": 0.0
+    },
+    "surface_lore": "Hardened, sharpened, refusing the heat.",
+    "true_name": "Metal insulting Fire (金侮火)"
+  },
+  {
+    "id": "erosion",
+    "name": "Erosion",
+    "emoji": "🏞️",
+    "tier": "insub",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.1,
+      "metal": 0.0,
+      "water": 0.9
+    },
+    "surface_lore": "Steady pressure wearing the bank away.",
+    "true_name": "Water insulting Earth (水侮土)"
+  },
+  {
+    "id": "tide",
+    "name": "Tide",
+    "emoji": "🌊",
+    "tier": "insub",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.1,
+      "water": 0.9
+    },
+    "surface_lore": "Unstoppable pressure rising against the metal that shed it.",
+    "true_name": "Water counter-acting Metal (水侮金)"
+  },
+  {
+    "id": "anger",
+    "name": "Anger",
+    "emoji": "😠",
+    "tier": "feeling",
+    "phase_weights": {
+      "wood": 1.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "A flash of irritation.",
+    "true_name": "Wood emotion (怒)"
+  },
+  {
+    "id": "joy",
+    "name": "Joy",
+    "emoji": "😄",
+    "tier": "feeling",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 1.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "A spark of warmth and enthusiasm.",
+    "true_name": "Fire emotion (喜)"
+  },
+  {
+    "id": "worry",
+    "name": "Worry",
+    "emoji": "😟",
+    "tier": "feeling",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 1.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "A quiet hum of overthinking.",
+    "true_name": "Earth emotion (思)"
+  },
+  {
+    "id": "grief",
+    "name": "Grief",
+    "emoji": "😢",
+    "tier": "feeling",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 1.0,
+      "water": 0.0
+    },
+    "surface_lore": "A held breath that wants to release.",
+    "true_name": "Metal emotion (悲)"
+  },
+  {
+    "id": "fear",
+    "name": "Fear",
+    "emoji": "😨",
+    "tier": "feeling",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 1.0
+    },
+    "surface_lore": "A cold tightening at the base.",
+    "true_name": "Water emotion (恐)"
+  },
+  {
+    "id": "overgrowth",
+    "name": "Overgrowth",
+    "emoji": "🌳",
+    "tier": "surge",
+    "phase_weights": {
+      "wood": 1.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Wood expanding past the space it has.",
+    "true_name": "Wood excess (木盛)"
+  },
+  {
+    "id": "restlessness",
+    "name": "Restlessness",
+    "emoji": "⚡",
+    "tier": "surge",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 1.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Energy that can't sit still.",
+    "true_name": "Fire excess (火盛)"
+  },
+  {
+    "id": "stagnation",
+    "name": "Stagnation",
+    "emoji": "🟫",
+    "tier": "surge",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 1.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Ground that's stopped passing things through.",
+    "true_name": "Earth excess (土盛)"
+  },
+  {
+    "id": "rigidity",
+    "name": "Rigidity",
+    "emoji": "🗿",
+    "tier": "surge",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 1.0,
+      "water": 0.0
+    },
+    "surface_lore": "Structure that won't yield to anything.",
+    "true_name": "Metal excess (金盛)"
+  },
+  {
+    "id": "flooding",
+    "name": "Flooding",
+    "emoji": "🌊",
+    "tier": "surge",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 1.0
+    },
+    "surface_lore": "Water that has lost its boundaries.",
+    "true_name": "Water excess (水盛)"
+  },
+  {
+    "id": "wind",
+    "name": "Wind",
+    "emoji": "🌬️",
+    "tier": "storm",
+    "phase_weights": {
+      "wood": 1.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "The phase as moving air — the wind that moves everything else.",
+    "true_name": "Liver Wind (肝風)"
+  },
+  {
+    "id": "heart",
+    "name": "Heart",
+    "emoji": "❤️",
+    "tier": "storm",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 1.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "The phase as steady center — the rhythm that keeps everything else moving.",
+    "true_name": "Heart Heat (心熱)"
+  },
+  {
+    "id": "mud",
+    "name": "Mud",
+    "emoji": "🟤",
+    "tier": "storm",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 1.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "The phase as saturated ground — heavy, holding, slow.",
+    "true_name": "Spleen Dampness (脓濕)"
+  },
+  {
+    "id": "drought",
+    "name": "Drought",
+    "emoji": "🏜️",
+    "tier": "storm",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 1.0,
+      "water": 0.0
+    },
+    "surface_lore": "The phase as parched country — clarity past the point of dryness.",
+    "true_name": "Lung Dryness (肺燥)"
+  },
+  {
+    "id": "frost",
+    "name": "Frost",
+    "emoji": "❄️",
+    "tier": "storm",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 1.0
+    },
+    "surface_lore": "The phase as winter at its hardest — water stopped where it stood.",
+    "true_name": "Kidney Cold (肾寒)"
+  },
+  {
+    "id": "hearth",
+    "name": "Hearth",
+    "emoji": "🪵",
+    "tier": "stage2-sheng-sheng",
+    "phase_weights": {
+      "wood": 0.25,
+      "fire": 0.5,
+      "earth": 0.25,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Contained, productive fire indoors.",
+    "true_name": null
+  },
+  {
+    "id": "charcoal",
+    "name": "Charcoal",
+    "emoji": "⬛",
+    "tier": "stage2-sheng-sheng",
+    "phase_weights": {
+      "wood": 0.25,
+      "fire": 0.25,
+      "earth": 0.5,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Wood burned slow under earth.",
+    "true_name": null
+  },
+  {
+    "id": "sap",
+    "name": "Sap",
+    "emoji": "🍯",
+    "tier": "stage2-sheng-sheng",
+    "phase_weights": {
+      "wood": 0.25,
+      "fire": 0.25,
+      "earth": 0.0,
+      "metal": 0.25,
+      "water": 0.25
+    },
+    "surface_lore": "A sticky, life-carrying substance.",
+    "true_name": null
+  },
+  {
+    "id": "grove",
+    "name": "Grove",
+    "emoji": "🌲",
+    "tier": "stage2-sheng-sheng",
+    "phase_weights": {
+      "wood": 0.75,
+      "fire": 0.25,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "A young stand of trees fed by what makes fire possible.",
+    "true_name": null
+  },
+  {
+    "id": "slag",
+    "name": "Slag",
+    "emoji": "🪨",
+    "tier": "stage2-sheng-sheng",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.25,
+      "earth": 0.5,
+      "metal": 0.25,
+      "water": 0.0
+    },
+    "surface_lore": "Smelting residue.",
+    "true_name": null
+  },
+  {
+    "id": "lye",
+    "name": "Lye",
+    "emoji": "🧴",
+    "tier": "stage2-sheng-sheng",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.25,
+      "earth": 0.25,
+      "metal": 0.25,
+      "water": 0.25
+    },
+    "surface_lore": "The oldest cleansing agent.",
+    "true_name": null
+  },
+  {
+    "id": "loam",
+    "name": "Loam",
+    "emoji": "🟫",
+    "tier": "stage2-sheng-sheng",
+    "phase_weights": {
+      "wood": 0.25,
+      "fire": 0.25,
+      "earth": 0.25,
+      "metal": 0.0,
+      "water": 0.25
+    },
+    "surface_lore": "Burned ground rich enough to grow on.",
+    "true_name": null
+  },
+  {
+    "id": "vein",
+    "name": "Vein",
+    "emoji": "💠",
+    "tier": "stage2-sheng-sheng",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.25,
+      "metal": 0.5,
+      "water": 0.25
+    },
+    "surface_lore": "A seam of unmined metal threaded with groundwater.",
+    "true_name": null
+  },
+  {
+    "id": "root_ore",
+    "name": "Root-Ore",
+    "emoji": "🌱",
+    "tier": "stage2-sheng-sheng",
+    "phase_weights": {
+      "wood": 0.25,
+      "fire": 0.0,
+      "earth": 0.25,
+      "metal": 0.25,
+      "water": 0.25
+    },
+    "surface_lore": "A sapling's roots cracking raw ore.",
+    "true_name": null
+  },
+  {
+    "id": "bud",
+    "name": "Bud",
+    "emoji": "🌿",
+    "tier": "stage2-sheng-sheng",
+    "phase_weights": {
+      "wood": 0.5,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.25,
+      "water": 0.25
+    },
+    "surface_lore": "Morning dew on new growth.",
+    "true_name": null
+  },
+  {
+    "id": "levee",
+    "name": "Levee",
+    "emoji": "🚧",
+    "tier": "stage2-ke-ke",
+    "phase_weights": {
+      "wood": 0.35,
+      "fire": 0.0,
+      "earth": 0.5,
+      "metal": 0.0,
+      "water": 0.15
+    },
+    "surface_lore": "Roots binding an earthen dam.",
+    "true_name": null
+  },
+  {
+    "id": "marsh",
+    "name": "Marsh",
+    "emoji": "🪻",
+    "tier": "stage2-ke-ke",
+    "phase_weights": {
+      "wood": 0.35,
+      "fire": 0.15,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.5
+    },
+    "surface_lore": "Where roots tangle in rain-soaked ground.",
+    "true_name": null
+  },
+  {
+    "id": "charwood",
+    "name": "Charwood",
+    "emoji": "🪵",
+    "tier": "stage2-ke-ke",
+    "phase_weights": {
+      "wood": 0.5,
+      "fire": 0.35,
+      "earth": 0.0,
+      "metal": 0.15,
+      "water": 0.0
+    },
+    "surface_lore": "Wood gripped by the forge.",
+    "true_name": null
+  },
+  {
+    "id": "stump",
+    "name": "Stump",
+    "emoji": "🪵",
+    "tier": "stage2-ke-ke",
+    "phase_weights": {
+      "wood": 0.65,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.35,
+      "water": 0.0
+    },
+    "surface_lore": "What an axe leaves of a tree's roots.",
+    "true_name": null
+  },
+  {
+    "id": "reservoir",
+    "name": "Reservoir",
+    "emoji": "🌊",
+    "tier": "stage2-ke-ke",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.15,
+      "earth": 0.35,
+      "metal": 0.0,
+      "water": 0.5
+    },
+    "surface_lore": "Rain caught and held.",
+    "true_name": null
+  },
+  {
+    "id": "furnace",
+    "name": "Furnace",
+    "emoji": "🏭",
+    "tier": "stage2-ke-ke",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.35,
+      "earth": 0.35,
+      "metal": 0.15,
+      "water": 0.15
+    },
+    "surface_lore": "A contained, fueled heat.",
+    "true_name": null
+  },
+  {
+    "id": "wedge",
+    "name": "Wedge",
+    "emoji": "🪓",
+    "tier": "stage2-ke-ke",
+    "phase_weights": {
+      "wood": 0.15,
+      "fire": 0.0,
+      "earth": 0.35,
+      "metal": 0.35,
+      "water": 0.15
+    },
+    "surface_lore": "A splitting tool.",
+    "true_name": null
+  },
+  {
+    "id": "quench_bath",
+    "name": "Quench-Bath",
+    "emoji": "💧",
+    "tier": "stage2-ke-ke",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.35,
+      "earth": 0.0,
+      "metal": 0.15,
+      "water": 0.5
+    },
+    "surface_lore": "The water bath used to harden hot metal.",
+    "true_name": null
+  },
+  {
+    "id": "whetstone",
+    "name": "Whetstone",
+    "emoji": "🪨",
+    "tier": "stage2-ke-ke",
+    "phase_weights": {
+      "wood": 0.15,
+      "fire": 0.15,
+      "earth": 0.0,
+      "metal": 0.35,
+      "water": 0.35
+    },
+    "surface_lore": "The stone that sharpens a blade.",
+    "true_name": null
+  },
+  {
+    "id": "anvil",
+    "name": "Anvil",
+    "emoji": "⚒️",
+    "tier": "stage2-ke-ke",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.35,
+      "earth": 0.0,
+      "metal": 0.65,
+      "water": 0.0
+    },
+    "surface_lore": "The smith's working anchor.",
+    "true_name": null
+  },
+  {
+    "id": "bellows",
+    "name": "Bellows",
+    "emoji": "🔥",
+    "tier": "stage2-sheng-ke",
+    "phase_weights": {
+      "wood": 0.15,
+      "fire": 0.7,
+      "earth": 0.0,
+      "metal": 0.15,
+      "water": 0.0
+    },
+    "surface_lore": "Fuel feeding the working fire.",
+    "true_name": null
+  },
+  {
+    "id": "mortar",
+    "name": "Mortar",
+    "emoji": "🧱",
+    "tier": "stage2-sheng-ke",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.15,
+      "earth": 0.7,
+      "metal": 0.0,
+      "water": 0.15
+    },
+    "surface_lore": "Lime ash bound into an earthen wall.",
+    "true_name": null
+  },
+  {
+    "id": "hilt",
+    "name": "Hilt",
+    "emoji": "🔱",
+    "tier": "stage2-sheng-ke",
+    "phase_weights": {
+      "wood": 0.15,
+      "fire": 0.0,
+      "earth": 0.15,
+      "metal": 0.7,
+      "water": 0.0
+    },
+    "surface_lore": "Raw metal finished into the axe's grip.",
+    "true_name": null
+  },
+  {
+    "id": "spring",
+    "name": "Spring",
+    "emoji": "💧",
+    "tier": "stage2-sheng-ke",
+    "phase_weights": {
+      "wood": 0.35,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.15,
+      "water": 0.5
+    },
+    "surface_lore": "A water source feeding the binding roots.",
+    "true_name": null
+  },
+  {
+    "id": "canopy",
+    "name": "Canopy",
+    "emoji": "🌳",
+    "tier": "stage2-sheng-ke",
+    "phase_weights": {
+      "wood": 0.65,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.35
+    },
+    "surface_lore": "Young growth catching the falling water.",
+    "true_name": null
+  },
+  {
+    "id": "tinder",
+    "name": "Tinder",
+    "emoji": "🔥",
+    "tier": "stage2-sheng-ke",
+    "phase_weights": {
+      "wood": 0.5,
+      "fire": 0.5,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Dry root-fibers as fire-starter.",
+    "true_name": null
+  },
+  {
+    "id": "brick",
+    "name": "Brick",
+    "emoji": "🧱",
+    "tier": "stage2-sheng-ke",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.3,
+      "earth": 0.7,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Fired earth shaped for stacking.",
+    "true_name": null
+  },
+  {
+    "id": "bloom",
+    "name": "Bloom",
+    "emoji": "🌸",
+    "tier": "stage2-sheng-ke",
+    "phase_weights": {
+      "wood": 0.5,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.5
+    },
+    "surface_lore": "A young tree flowering after rain.",
+    "true_name": null
+  },
+  {
+    "id": "ingot",
+    "name": "Ingot",
+    "emoji": "🟨",
+    "tier": "stage2-sheng-ke",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.5,
+      "earth": 0.0,
+      "metal": 0.5,
+      "water": 0.0
+    },
+    "surface_lore": "Smelted, refined metal.",
+    "true_name": null
+  },
+  {
+    "id": "plank",
+    "name": "Plank",
+    "emoji": "🪵",
+    "tier": "stage2-sheng-ke",
+    "phase_weights": {
+      "wood": 0.5,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.5,
+      "water": 0.0
+    },
+    "surface_lore": "Worked wood, ready to build with.",
+    "true_name": null
+  },
+  {
+    "id": "brand",
+    "name": "Brand",
+    "emoji": "🪵",
+    "tier": "stage2-bridge",
+    "phase_weights": {
+      "wood": 0.3,
+      "fire": 0.35,
+      "earth": 0.0,
+      "metal": 0.35,
+      "water": 0.0
+    },
+    "surface_lore": "Hot metal pressed into wood as a mark.",
+    "true_name": null
+  },
+  {
+    "id": "patina",
+    "name": "Patina",
+    "emoji": "🟧",
+    "tier": "stage2-bridge",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.25,
+      "metal": 0.25,
+      "water": 0.5
+    },
+    "surface_lore": "The natural oxidation layer on unworked ore exposed to weather.",
+    "true_name": null
+  },
+  {
+    "id": "pyre",
+    "name": "Pyre",
+    "emoji": "🔥",
+    "tier": "stage2-bridge",
+    "phase_weights": {
+      "wood": 0.25,
+      "fire": 0.25,
+      "earth": 0.35,
+      "metal": 0.0,
+      "water": 0.15
+    },
+    "surface_lore": "A contained fire built with fuel and walls.",
+    "true_name": null
+  },
+  {
+    "id": "wellspring",
+    "name": "Wellspring",
+    "emoji": "💧",
+    "tier": "stage2-bridge",
+    "phase_weights": {
+      "wood": 0.35,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.25,
+      "water": 0.4
+    },
+    "surface_lore": "An underground water source the roots have found.",
+    "true_name": null
+  },
+  {
+    "id": "rime",
+    "name": "Rime",
+    "emoji": "🗡️",
+    "tier": "stage2-bridge",
+    "phase_weights": {
+      "wood": 0.15,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.5,
+      "water": 0.35
+    },
+    "surface_lore": "Ice deposited on a cold blade from atmospheric moisture.",
+    "true_name": null
+  },
+  {
+    "id": "bonfire",
+    "name": "Bonfire",
+    "emoji": "🔥",
+    "tier": "refined",
+    "phase_weights": {
+      "wood": 0.3,
+      "fire": 0.7,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "A larger, sustained, communal fire.",
+    "true_name": null
+  },
+  {
+    "id": "topsoil",
+    "name": "Topsoil",
+    "emoji": "🟫",
+    "tier": "refined",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.3,
+      "earth": 0.7,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "The agriculturally richest version of Earth.",
+    "true_name": null
+  },
+  {
+    "id": "bullion",
+    "name": "Bullion",
+    "emoji": "🟨",
+    "tier": "refined",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.3,
+      "metal": 0.7,
+      "water": 0.0
+    },
+    "surface_lore": "Raw ore refined into pure stock.",
+    "true_name": null
+  },
+  {
+    "id": "spring_water",
+    "name": "Spring-Water",
+    "emoji": "💧",
+    "tier": "refined",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.3,
+      "water": 0.7
+    },
+    "surface_lore": "Condensate returned to its source.",
+    "true_name": null
+  },
+  {
+    "id": "orchard",
+    "name": "Orchard",
+    "emoji": "🌳",
+    "tier": "refined",
+    "phase_weights": {
+      "wood": 0.7,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.3
+    },
+    "surface_lore": "A cultivated stand of trees.",
+    "true_name": null
+  },
+  {
+    "id": "heartwood",
+    "name": "Heartwood",
+    "emoji": "🪵",
+    "tier": "refined",
+    "phase_weights": {
+      "wood": 0.85,
+      "fire": 0.0,
+      "earth": 0.15,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "The densest, most centered form of Wood.",
+    "true_name": null
+  },
+  {
+    "id": "bedrock",
+    "name": "Bedrock",
+    "emoji": "⛰️",
+    "tier": "refined",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.85,
+      "metal": 0.0,
+      "water": 0.15
+    },
+    "surface_lore": "Earth fortified into its load-bearing form.",
+    "true_name": null
+  },
+  {
+    "id": "monsoon",
+    "name": "Monsoon",
+    "emoji": "🌧️",
+    "tier": "refined",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.15,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.85
+    },
+    "surface_lore": "Rain compounded into a seasonal pattern.",
+    "true_name": null
+  },
+  {
+    "id": "inferno",
+    "name": "Inferno",
+    "emoji": "🔥",
+    "tier": "refined",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.85,
+      "earth": 0.0,
+      "metal": 0.15,
+      "water": 0.0
+    },
+    "surface_lore": "Working-fire compounded, approaching but not yet catastrophe.",
+    "true_name": null
+  },
+  {
+    "id": "whetted_steel",
+    "name": "Whetted-Steel",
+    "emoji": "🗡️",
+    "tier": "refined",
+    "phase_weights": {
+      "wood": 0.15,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.85,
+      "water": 0.0
+    },
+    "surface_lore": "The blade sharpened to its theoretical edge.",
+    "true_name": null
+  },
+  {
+    "id": "firestorm",
+    "name": "Firestorm",
+    "emoji": "🌪️",
+    "tier": "catastrophe",
+    "phase_weights": {
+      "wood": 0.5,
+      "fire": 0.5,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "A wind-driven inferno.",
+    "true_name": null
+  },
+  {
+    "id": "sandstorm",
+    "name": "Sandstorm",
+    "emoji": "🌪️",
+    "tier": "catastrophe",
+    "phase_weights": {
+      "wood": 0.5,
+      "fire": 0.0,
+      "earth": 0.5,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Wind carrying loosened earth.",
+    "true_name": null
+  },
+  {
+    "id": "dustbowl",
+    "name": "Dustbowl",
+    "emoji": "🏜️",
+    "tier": "catastrophe",
+    "phase_weights": {
+      "wood": 0.5,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.5,
+      "water": 0.0
+    },
+    "surface_lore": "Wind across parched land.",
+    "true_name": null
+  },
+  {
+    "id": "blizzard",
+    "name": "Blizzard",
+    "emoji": "🌨️",
+    "tier": "catastrophe",
+    "phase_weights": {
+      "wood": 0.5,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.5
+    },
+    "surface_lore": "Wind plus cold at full intensity.",
+    "true_name": null
+  },
+  {
+    "id": "eruption",
+    "name": "Eruption",
+    "emoji": "🌋",
+    "tier": "catastrophe",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.5,
+      "earth": 0.5,
+      "metal": 0.0,
+      "water": 0.0
+    },
+    "surface_lore": "Heat trapped under earth, bursting.",
+    "true_name": null
+  },
+  {
+    "id": "conflagration",
+    "name": "Conflagration",
+    "emoji": "🔥",
+    "tier": "catastrophe",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.5,
+      "earth": 0.0,
+      "metal": 0.5,
+      "water": 0.0
+    },
+    "surface_lore": "Uncontrolled fire across dry country.",
+    "true_name": null
+  },
+  {
+    "id": "geyser",
+    "name": "Geyser",
+    "emoji": "♨️",
+    "tier": "catastrophe",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.5,
+      "earth": 0.0,
+      "metal": 0.0,
+      "water": 0.5
+    },
+    "surface_lore": "Boiling water and steam erupting from the ground.",
+    "true_name": null
+  },
+  {
+    "id": "fissure",
+    "name": "Fissure",
+    "emoji": "🪨",
+    "tier": "catastrophe",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.5,
+      "metal": 0.5,
+      "water": 0.0
+    },
+    "surface_lore": "A deep crack in dampness baked then split open.",
+    "true_name": null
+  },
+  {
+    "id": "permafrost",
+    "name": "Permafrost",
+    "emoji": "❄️",
+    "tier": "catastrophe",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.5,
+      "metal": 0.0,
+      "water": 0.5
+    },
+    "surface_lore": "Saturated ground frozen solid.",
+    "true_name": null
+  },
+  {
+    "id": "tundra",
+    "name": "Tundra",
+    "emoji": "🏔️",
+    "tier": "catastrophe",
+    "phase_weights": {
+      "wood": 0.0,
+      "fire": 0.0,
+      "earth": 0.0,
+      "metal": 0.5,
+      "water": 0.5
+    },
+    "surface_lore": "Cold, dry, treeless land.",
+    "true_name": null
+  }
+]

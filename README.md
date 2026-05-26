@@ -4,9 +4,17 @@ A crafting game in the lineage of [Infinite Craft](https://neal.fun/infinite-cra
 
 ## Status
 
-Pre-alpha. Notes and design only. No playable build yet.
+Early v1 scaffold. The design docs are complete enough to implement against, and a playable vanilla-JS prototype lives in [`app/`](./app/).
 
-This repo is being populated from a brainstorming session. Game mechanics are being designed first; gesture input (via [Hand_AI](https://github.com/warrenrross/Hand_AI)) is deferred to a later phase.
+Game mechanics are still being refined; gesture input (via [Hand_AI](https://github.com/warrenrross/Hand_AI)) is deferred to a later phase. The current scaffold uses mouse drag-and-drop.
+
+To try the prototype:
+
+```bash
+cd app && python3 -m http.server 8000
+```
+
+Then open http://localhost:8000. See [`app/README.md`](./app/README.md) for what works in v1.
 
 ## The idea in one paragraph
 
@@ -19,7 +27,8 @@ Two modes are planned:
 
 ## Where to start
 
-- [`docs/design/`](./docs/design/) — game mechanics, the 25-cell interaction grid, mode design, UI layout notes.
+- [`app/`](./app/) — the v1 scaffold (vanilla JS, no build step).
+- [`docs/design/`](./docs/design/) — game mechanics, the 25-cell interaction grid, mode design, UI layout notes, ratified naming, inspect copy.
 - [`docs/research/`](./docs/research/) — the Wu Xing source material and the Infinite Craft architecture reference that informs the backend shape.
 - [`AGENT_NOTES.md`](./AGENT_NOTES.md) — session-to-session handoff notes, matching the convention in [Hand_AI](https://github.com/warrenrross/Hand_AI) and [gesture-detect-research](https://github.com/warrenrross/gesture-detect-research).
 
