@@ -23,7 +23,7 @@ Every pure-phase entity carries a `concentration` between 1 and 5. Five rungs, f
 
 Climbing (already shipped) sums concentrations and clamps at 5. This note adds descent.
 
-## Four ratified decisions
+## Six ratified decisions
 
 ### Decision 1 — Descent rule (the **Xie / weakening cycle**)
 
@@ -172,17 +172,53 @@ The two relevant ratified phrases:
 - "The 64 hexagrams could be a useful mathematical model for underlying game mechanics."
 - "Wu Xing elements have been associated throughout."
 
+### Decision 5 — Strength resolves, drag direction is just selection
+
+The current `resolve(actor, patient)` signature is order-sensitive: drag-from chooses actor, drag-onto chooses patient, and the recipe table is keyed on the ordered pair. This was an artifact of the early v1 design and doesn't reflect the source tradition. Wu Xing relationships are intrinsic to the *phases*, not to the *gesture*.
+
+**Rule.** When two entities meet, the **stronger concentration acts on the weaker** through whatever cycle relationship their phases share. When concentrations are equal, **the cycle decides direction; drag is just selection**.
+
+Concretely:
+
+- Same phase — existing concentration-additive climb (unchanged).
+- Different phase, **unequal concentration** — stronger is the effective actor. The cycle relationship from stronger→weaker phase determines the result. If the stronger phase Ke-controls the weaker, Ke fires. If the stronger phase is the Sheng-child of the weaker, Xie fires (weakening). If the stronger phase is the Wu-controlled-by (i.e. it was "supposed to be controlled" by the weaker but isn't because the weaker is too weak), Wu fires.
+- Different phase, **equal concentration** — the cycle relationship between the two phases is intrinsic and direction-fixed in the source tradition: Wood→Fire is Sheng, Metal→Wood is Ke, etc. Drag direction is ignored. One outcome per **unordered** pair, not two.
+
+**Insub stops being a separate cycle.** The Wu/insulting outcome auto-fires whenever a Ke-controller is dropped on a stronger same-Ke-axis patient. *"If the wood is very strong and metal is weak, the last mentioned will get damaged or will lose its original force when trying to control or 'cut' the wood"* ([fengshuinatural.com](https://www.fengshuinatural.com/en/five-elements.html)). The existing Insub recipes in `recipes.json` become the Wu *outcomes*, indexed by `{strong_phase, weak_phase, cycle: "wu"}` after the migration.
+
+**Implementation impact when we get there.**
+
+- `resolve()` adds a strength comparator and a `cycleBetween(strongPhase, weakPhase)` classifier returning `"sheng" | "ke" | "xie" | "wu" | "none"`.
+- The recipes.json table gets re-keyed from ordered pairs to `{phases: [a, b], cycle: ...}`. Sheng and Ke rows stay; Insub rows merge into Wu rows; stage-2 (mixed-phase) rows are unaffected because they have no natural inverse.
+- Estimated 3–4 hours engine + data, plus playtest. Smaller than it sounds because Decisions 1 and 4 haven't been built yet — if we ratify Decision 5 *before* implementing 1 and 4, no rework.
+
+**Author Decisions 1 and 4 under the strength-resolution model from the start.** Even if Decision 5 is the last to actually ship, the new code for Xie and ambient-affect should call `cycleBetween(strong, weak)` instead of reasoning about actor/patient directly. Costs nothing in the short term, saves the migration later.
+
+### Decision 6 — The Wu Xing pentagram is the legend
+
+Ultimately the artwork in the crafting space will make the cycle obvious. A pentagram diagram drawn into the workspace background — five phase tiles arranged in a circle, Sheng arrows around the outside, Ke arrows crossing through the inside as a five-pointed star — lets the player read the cycle visually without text. This is the canonical Wu Xing diagram from the [feng shui article](https://www.fengshuinatural.com/en/five-elements.html) and across the tradition.
+
+Deferred, but locked as the target visual language. When implemented it replaces (or augments) the right-hand phase-tile column in the current layout. The player drags phase tiles directly off the wheel into the workspace; the wheel itself remains visible as a legend.
+
+This is the answer to "how does the player learn the cycle without reading recipes?" — the cycle is drawn into the table they're playing on. Hover states on the wheel can highlight which arrow a candidate drop sits on, telegraphing the relationship before commit.
+
+Not in scope for the next implementation pass. Parked, but informs every design decision above: we can rely on visual disambiguation of the cycles, which means we don't need to over-explain them in inspect copy or tile labels.
+
 ## Order of work when this is greenlit
 
-1. **Decision 3 first** (inspect-copy rewrite, no engine change). Easiest, lowest-risk, immediately validates the "composition not provenance" intuition with real players. Maybe 30 minutes.
-2. **Decision 1** (Xie descent rule). Engine change in `resolve()`. Needs a child→parent constant table, a new `moveType: "xie"`, a new halo color, and an extension of `getEntitiesProducing()`-equivalent if we still want the inspect drawer to mention how an entity can be reached. (We don't, per Decision 3, so that part disappears.)
-3. **Decision 4** (no more nulls). Largest change. Probably do the *visual cue only* version first — every drop fires a halo that names the relationship, no new entity spawned for un-recipe'd pairs. Punt the floating-weight version until we see if the cue alone is satisfying.
-4. **Decision 2** is a do-nothing — it's a negative decision documenting that Ke stays put.
-5. Balance-mode integration of any of the above is deferred to a separate pass.
+1. **Decision 3 first** (inspect-copy rewrite, no engine change). Easiest, lowest-risk, immediately validates the "composition not provenance" intuition. Maybe 30 minutes.
+2. **Decision 5 ratified in code shape before any new mechanic ships.** Add a `cycleBetween(phaseA, phaseB)` helper and a strength comparator to the engine, even if `resolve()` doesn't use them yet. This is the scaffold every later decision sits on.
+3. **Decision 1** (Xie descent rule), authored against the strength-resolution helpers. Needs a new `moveType: "xie"`, a halo color (open question), and the child→parent table. By this point Decision 3 has reshaped the inspect drawer so the Xie outcome reads naturally as a composition delta.
+4. **Decision 4** (no more nulls). Visual-cue-only version first — every drop fires a halo that names the relationship, no new entity spawned for un-recipe'd pairs. Floating-weight version (true subtraction at the `phase_weights` level) deferred.
+5. **Decision 5 migration** — re-key the existing `recipes.json` table from ordered pairs to unordered `{phases, cycle}`. Insub rows merge into Wu rows. This is the cleanup step that retires the actor-patient grammar from the data layer entirely.
+6. **Decision 2** is a do-nothing — documents that Ke stays as a control move, doesn't decrement, doesn't conflate with Xie.
+7. **Decision 6** (pentagram artwork) deferred to its own visual-design pass. Not blocking anything; informs the eventual layout overhaul.
+8. Balance-mode integration of any of the above is deferred to a separate pass.
 
 ## Open questions for the next session
 
-- **Color** for the new Xie cue. Teal? Cyan? Soft blue? Whatever it is, it has to be visually distinct from Sheng (green) and the cool-side phase tints (Water, Metal).
-- **What exactly the ambient-affect cue looks like** for the five inter-phase relationships when no recipe produces a new entity. Sheng-feed, Ke-control, Xie-weaken, Wu-harm — four distinct directional halos? Or one universal "interaction registered" pulse?
+- **Color** for the new Xie cue. Teal? Cyan? Soft blue? Whatever it is, it has to be visually distinct from Sheng (green) and the cool-side phase tints (Water, Metal). Wu/Insub also needs a cue color once Decision 5 separates it from the existing Insub recipes — propose **deep red** (already used for Ke) at higher intensity, or a desaturated purple-red. Decide during implementation.
+- **What exactly the ambient-affect cue looks like** for the five inter-phase relationships when no recipe produces a new entity. Sheng-feed, Ke-control, Xie-weaken, Wu-harm — four distinct directional halos? Or one universal "interaction registered" pulse? Note that Decision 6 (pentagram artwork) eventually makes the cycle visible by location, which may reduce how much the halo needs to communicate.
 - **Should mixed-phase (stage-2) entities participate in Xie?** Kindling is half-Wood, half-Fire — does Fire-child weaken it? Probably no for v1 (only pure-phase entities have a clear "child phase"), but worth saying explicitly.
 - **Does the discoveries ledger still record by entity, or also by relationship?** "First time you saw Xie" might be its own discovery.
+- **Strength tiebreak when phases are unequal but concentrations are equal.** Decision 5 resolves this for *different* phases (cycle decides). For *same* phase the additive rule handles it. There's no remaining ambiguity but worth confirming during implementation.
